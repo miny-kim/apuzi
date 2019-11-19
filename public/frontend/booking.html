@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>booking</title>
+    <link rel="stylesheet" href=" ./css/booking.css" />
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+    <aside>
+        <article class="a1">
+            <h1>반려 동물 정보 입력</h1>
+            <label for="treat"><b>증상 및 진료 희망 종목</b></label>
+            <input type="text" v-model="treat" name="treat" required>
+            <br>
+            <label for="animal_type"><b>종</b></label>
+            <input type="text" v-model="animal_type" name="animal_type" required>
+            <br>
+
+            <label for="sex"><b>성별 </b></label>
+            <input type="radio" v-model="female" name="female" required>여
+            <input type="radio" v-model="male" name="female" required>남
+            <br>
+
+            <label for="age"><b>나이</b></label>
+            <input type="text" v-model="age" name="age" required>
+            <br>
+            <label for="etc"><b>특이사항</b></label>
+            <input type="text" v-model="etc" name="etc" required>
+        </article>
+        <article class="a2">
+            <h1>보호자 정보</h1>
+            <label for="p_name"><b>이름</b></label>
+            <input type="text" v-model="p_name" name="p_name" required>
+            <br>
+            <label for="p_num"><b>핸드폰 번호</b></label>
+            <input type="text" v-model="p_num" name="p_num" required>
+            <br>
+
+
+            <label for="email"><b>Email</b></label>
+            <input type="text" v-model="email" name="email" required>
+            <br>
+            <label for="request"><b>요청 사항</b></label>
+            <input type="text" v-model="request" name="request" required>
+        </article>
+    </aside>
+    <footer>
+    <button type="submit" v-on:click="booking_button">Booking</button>
+    </footer>
+
+    <script src="./js/booking.js"></script>
+</body>
+
+</html>

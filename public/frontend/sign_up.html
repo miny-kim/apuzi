@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>회원가입</title>
+</head>
+
+<body>
+    <!--<div id="join_form">
+        <label for="uid"><b>ID</b></label>
+        <input type="text" id="id" required>
+        <br>
+        <label for="upsw1"><b>Password</b></label>
+        <input type="text" v-model="psw1" required>
+        <br>
+        <label for="upsw2"><b>비밀번호 재확인 </b></label>
+        <input type="text" v-model="psw2" required>
+        <br>
+        <label for="uname"><b>User name</b></label>
+        <input type="text" v-model="uname" required>
+        <br>
+        <label for="usex"><b>성별</b></label>
+        <input type="text" v-model="sex" required>
+        <br>
+        <label for="uemail"><b>본인 확인 이메일</b></label>
+        <input type="text" v-model="email" maxlength="100" required>
+        <br>
+        <button type="submit" v-on:click="sign_up_button">Sign Up</button>
+    </div>-->
+    <form action="/connection/signUp" method="POST">
+        <label for="uid"><b>ID</b></label>
+        <input type="text" name="id" required>
+        <br>
+        <label for="upsw1"><b>Password</b></label>
+        <input type="text" name="psw1" v-model="psw1" required>
+        <br>
+        <label for="upsw2"><b>비밀번호 재확인 </b></label>
+        <input type="text" name="psw2" v-model="psw2" required>
+        <br>
+        <label for="uname"><b>User name</b></label>
+        <input type="text" name="uname" v-model="uname" required>
+        <br>
+        <label for="usex"><b>성별</b></label>
+        <input type="text" name="sex" v-model="sex" required>
+        <br>
+        <label for="uemail"><b>본인 확인 이메일</b></label>
+        <input type="text" name="email" v-model="email" maxlength="100" required>
+        <br>
+        <input type="submit">
+    </form>
+
+   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  
+    <script src="./js/sign_up.js"></script>
+</body>
+
+</html>
