@@ -1,4 +1,3 @@
-
 const app = new Vue({
   el: '#login',
   data: {
@@ -10,9 +9,19 @@ const app = new Vue({
 
   methods: {
     login_button: function(){
-      console.log(this.id);
-      console.log(this.psw);
-      location.href = "board_main.html"
+      console.log("id:"+this.id);
+      console.log("ps:"+this.psw);
+      axios.post('/users',{
+        id:this.id,
+        psw:this.psw
+      })/*
+      .then(function(response){
+        console.log(response);
+      })
+      .catch(function(error){
+        console.log(error);
+      });*/
+      //location.href = "board_main.html"
     },
     sign_up: function(){
       
