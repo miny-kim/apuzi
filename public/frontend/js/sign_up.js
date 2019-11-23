@@ -1,4 +1,4 @@
-/*
+
 const app = new Vue({
     el: '#join_form',
     data: {
@@ -23,9 +23,9 @@ const app = new Vue({
   
   })
   // import all
-//import {Datepicker, Timepicker, DatetimePicker} from '@livelybone/vue-datepicker';
+import {Datepicker, Timepicker, DatetimePicker} from '@livelybone/vue-datepicker';
 // or
-//import * as VueDatepicker from '@livelybone/vue-datepicker';
+import * as VueDatepicker from '@livelybone/vue-datepicker';
 
 // Global register
 Vue.component('datepicker', Datepicker);
@@ -35,4 +35,4 @@ Vue.component('datetime-picker', DatetimePicker);
 // Local register
 new Vue({
   components:{Datepicker, Timepicker, DatetimePicker}
-})*/
+})

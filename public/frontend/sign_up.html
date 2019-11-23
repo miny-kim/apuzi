@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <!--<div id="join_form">
+    <div id="join_form">
         <label for="uid"><b>ID</b></label>
         <input type="text" id="id" required>
         <br>
@@ -29,32 +29,9 @@
         <input type="text" v-model="email" maxlength="100" required>
         <br>
         <button type="submit" v-on:click="sign_up_button">Sign Up</button>
-    </div>-->
-    <form action="/connection/signUp" method="POST">
-        <label for="uid"><b>ID</b></label>
-        <input type="text" name="id" required>
-        <br>
-        <label for="upsw1"><b>Password</b></label>
-        <input type="text" name="psw1" v-model="psw1" required>
-        <br>
-        <label for="upsw2"><b>비밀번호 재확인 </b></label>
-        <input type="text" name="psw2" v-model="psw2" required>
-        <br>
-        <label for="uname"><b>User name</b></label>
-        <input type="text" name="uname" v-model="uname" required>
-        <br>
-        <label for="usex"><b>성별</b></label>
-        <input type="text" name="sex" v-model="sex" required>
-        <br>
-        <label for="uemail"><b>본인 확인 이메일</b></label>
-        <input type="text" name="email" v-model="email" maxlength="100" required>
-        <br>
-        <input type="submit">
-    </form>
-
-   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  
-    <script src="./js/sign_up.js"></script>
+    </div>
+    <script src="https://unpkg.com/@livelybone/vue-datepicker/lib/umd/<--module-->.js"></script>
+    <script src="./sign_up.js"></script>
 </body>
 
 </html>

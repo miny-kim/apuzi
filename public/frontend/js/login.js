@@ -11,16 +11,16 @@ const app = new Vue({
     login_button: function(){
       console.log("id:"+this.id);
       console.log("ps:"+this.psw);
-      axios.post('/users',{
+      axios.post('/users/login',{
         id:this.id,
         psw:this.psw
-      })/*
+      })
       .then(function(response){
-        console.log(response);
+        console.log(response.data);
       })
       .catch(function(error){
         console.log(error);
-      });*/
+      });
       //location.href = "board_main.html"
     },
     sign_up: function(){
