@@ -4,18 +4,16 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var { MongoClient } = require("mongodb");
 var session = require('express-session');
-var MongoStore =require("connect-mongo")(session);
 var database = require("./lib/database");
+var MongoStore =require("connect-mongo")(session);
 
+var app = express();
 app.use(session({
     secret: 'asadlfkj!@#!@#dfgasdg',
     resave: false,
     saveUninitialized: true,
     store: new MongoStore({
-        clinet:new MongoClient(database.uri,{
-            useNewUrlParser: true,
-            useUnifiedTopology: true 
-        })
+        url:database.uri
     })
 }));
 
@@ -24,11 +22,10 @@ var passport = require('./lib/passport')(app);
 
 
 var boardRouter = require("./routes/board");
-var authRouter = require("./routes/auth");
+var authRouter = require("./routes/auth")(passport);
 var myPetRouter = require("./routes/myPet");
 
 
-var app = express();
 
 app.use(logger('dev'));
 app.use(express.json());

@@ -11,7 +11,7 @@ module.exports = function (passport) {
         try {
             await database.createListing("users", req.body);
             res.json({ success: true });
-        } catch{
+        } catch(e){
             res.json({ success: false });
         }
     });
@@ -20,7 +20,7 @@ module.exports = function (passport) {
         try {
             await database.createListing("doctors", req.body);
             res.json({ success: true });
-        } catch{
+        } catch(e){
             res.json({ success: false });
         }
     });
