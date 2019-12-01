@@ -9,7 +9,7 @@
             <p></p>
             <input type="password" v-model="pw" placeholder="Enter Password" name="pw" required>
             <p></p>
-            <router-link :to = "{name:'board'}"><button type="submit" v-on: click="login_button" id="login">Login</button></router-link>
+            <button type="submit" v-on: click="login_button" id="login">Login</button>
             <router-link :to = "{name:'sign_up'}"> <button type="button" class="sign_up">Sign up</button></router-link>
             <p></p>
             <input type="checkbox" checked="checked" name="remember"> Remember me
@@ -37,16 +37,14 @@ export default{
       this.$http.post('/login', { id: this.id, pw : this.pw}
             ).then(response => {
                 console.warn(response)
-                this.result = response.data
-                this.no = response.data.no
+                if(response.data.success == true){
+                    console.log("success"); 
+                    this.$router.push({name: 'board'});
+                    }  
             }).catch((ex) => {
                 console.warn("ERROR!!!!! : ",ex)
             });
-      /*this.$http.get('http://localhost:3000/login').then(response => {
-        console.warn(response);
-        if(response.data.success == true)
-          console.log("success");  
-      })*/
+
     }
   }
 }
