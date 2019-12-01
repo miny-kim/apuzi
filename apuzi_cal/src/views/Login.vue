@@ -9,7 +9,7 @@
             <p></p>
             <input type="password" v-model="pw" placeholder="Enter Password" name="pw" required>
             <p></p>
-            <button type="submit" v-on: click="login_button" id="login">Login</button>
+            <button type="submit" v-on:click="login_button" id="login">Login</button>
             <router-link :to = "{name:'sign_up'}"> <button type="button" class="sign_up">Sign up</button></router-link>
             <p></p>
             <input type="checkbox" checked="checked" name="remember"> Remember me
@@ -82,7 +82,7 @@ input[type=password] {
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
-    border: 1px solid #ccc;
+    border: 2px solid grey;
     box-sizing: border-box;
     border-radius: 8px;
 }

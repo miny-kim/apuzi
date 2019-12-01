@@ -22,7 +22,7 @@ export default {
   data () {
     return {
       boards: [{
-          name:"Dfdf",
+          name:"Food",
           idx:1
       }],
       selected:"",

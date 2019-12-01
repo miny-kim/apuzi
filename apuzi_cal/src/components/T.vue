@@ -50,7 +50,7 @@ export default {
       texts: [{
           idx:1,
           title:"1111",
-          writer:"soadif;asdl",
+          writer:"miny",
           time:"09",
           view:1, 
           like:3,
@@ -71,7 +71,6 @@ export default {
             let name = this.text_name;
             console.log(name);
             if (this.selected == "title") {
-            console.log("Ddddddddddd");
                 return this.texts.filter(txt => {
                     return txt.title.includes(name);
                 });
