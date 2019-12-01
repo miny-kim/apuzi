@@ -28,14 +28,14 @@ export default {
       selected:"",
     }
   },
-   /*created () {
-    this.$http.get('http://localhost:3000/api/board')
+   created () {
+    this.$http.get('/board')
     .then((response) => {
       this.boards = response.data;
       
       console.log(this.boards[0]);
     })
-  },*/
+  },
   computed:{
       
   }

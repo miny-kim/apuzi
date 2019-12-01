@@ -34,14 +34,14 @@ export default {
       selected:"",
     }
   },
-   /*created () {
-    this.$http.get('http://localhost:3000/api/board')
+   created () {
+    this.$http.get('/my_pet')
     .then((response) => {
       this.pet_list = response.data;
       
       console.log(this.pet_list[0]);
     })
-  },*/
+  },
   computed:{
       
   }

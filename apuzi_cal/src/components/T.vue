@@ -58,14 +58,14 @@ export default {
       selected:"title",
     }
   },
-  /* created () {
+   created () {
        let idx = this.$route.params.idx;
-    this.$http.get(`http://localhost:3000/api/board/${idx}`)
+    this.$http.get(`/board/${idx}`)
     .then((response) => {
       this.texts = response.data;
       console.log(this.texts[0]);
     })
-  },*/
+  },
   computed:{
       filtered(){
             let name = this.text_name;

@@ -14,7 +14,7 @@
     <h2 style="line-height: 100px;">Want to help? Become a User_Doctor.</h2>
     <div id="join_form">
             <label for="id"><b>ID</b></label>
-            <input type="text" id="id"  placeholder="Enter Id" required="">
+            <input type="text" v-model="id"  placeholder="Enter Id" required="">
             <br>
             <label for="psw1"><b>Password</b></label>
             <input type="text" v-model="pw"  placeholder="Enter pw" required="">
@@ -61,7 +61,7 @@ export default{
     methods: {
     sign_up_button: function(){ //post
    if(this.pw == this.pw2&& (this.pw.length >=6 && this.pw.length<=12)){ //pw입력 오류
-         this.$http.post('http://localhost:3000/login', { id: this.id, pw : this.pw, hospital_name : this.hospital_name, address: this.address, doctor_name : this.doctor_name, email: this.email}
+         this.$http.post('/sign_up_doctor', { id: this.id, pw : this.pw, hospital_name : this.hospital_name, address: this.address, doctor_name : this.doctor_name, email: this.email}
             ).then(response => {
                 console.warn(response)
                 this.result = response.data

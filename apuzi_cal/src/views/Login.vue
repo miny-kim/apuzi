@@ -34,7 +34,7 @@ export default{
     login_button: function(){ //post
       console.log(this.id);
       console.log(this.pw);
-      this.$http.post('http://localhost:3000/login', { id: this.id, pw : this.pw}
+      this.$http.post('/login', { id: this.id, pw : this.pw}
             ).then(response => {
                 console.warn(response)
                 this.result = response.data

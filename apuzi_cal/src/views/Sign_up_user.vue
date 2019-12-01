@@ -14,7 +14,7 @@
     <h2 style="line-height: 100px;">Want to help? Become a User.</h2>
     <div id="join_form">
             <label for="id"><b>ID</b></label>
-            <input type="text" id="id"  placeholder="Enter ID" required="">
+            <input type="text"v-model="id"  placeholder="Enter ID" required="">
             <br>
             <label for="pw"><b>Password</b></label>
             <input type="text" v-model="pw"  placeholder="Password length must be 6 to 12" required="">
@@ -69,7 +69,7 @@ export default{
     // }
     if(this.pw == this.pw2&& (this.pw.length >=6 && this.pw.length<=12)){ //pw입력 오류
         console.log(this.pw.length);
-        this.$http.post('http://localhost:3000/login', {
+        this.$http.post('/sign_up_user', {
            id: this.id,
            pw : this.pw, 
            user_name : this.user_name, 
