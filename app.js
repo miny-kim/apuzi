@@ -2,7 +2,6 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var { MongoClient } = require("mongodb");
 var session = require('express-session');
 var database = require("./lib/database");
 var MongoStore =require("connect-mongo")(session);

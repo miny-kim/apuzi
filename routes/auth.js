@@ -4,19 +4,23 @@ var database = require("../lib/database");
 
 module.exports = function (passport) {
     router.post('/sign_up_user', async function (req, res) {
+        let user=req.body;
+        user.status="user";
         try {
-            await database.createListing("users", req.body);
+            await database.createListing("users", user);
             res.json({ success: true });
-        } catch(e){
+        } catch (e) {
             res.json({ success: false });
         }
     });
 
     router.post('/sign_up_doctor', async function (req, res) {
+        let user=req.body;
+        user.status="doctor";
         try {
-            await database.createListing("doctors", req.body);
+            await database.createListing("doctors", user);
             res.json({ success: true });
-        } catch(e){
+        } catch (e) {
             res.json({ success: false });
         }
     });
@@ -33,8 +37,8 @@ module.exports = function (passport) {
 
     router.post('/login',
         passport.authenticate('local', {
-            successRedirect: '/auth/login/success',
-            failureRedirect: '/auth/login/fail'
+            successRedirect: '/login/success',
+            failureRedirect: '/login/fail'
         }));
 
     router.get('/logout', function (req, res) {
@@ -44,12 +48,12 @@ module.exports = function (passport) {
         });
     });
 
-    router.get("",function(req,res){
-
+    router.get("", function (req, res) {
+        user=req.user;
         res.json({
-            success:true,
-            type:"",//해야댐
-            info:req.user
+            success: true,
+            type: user.status,
+            info: user
         })
     })
 
