@@ -29,8 +29,4 @@ router.post('/addpet',async function(req,res){
     }
 });
 
-router.get('/:idx',function(req,res,next){
-    //??
-});
-
 module.exports = router;

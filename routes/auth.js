@@ -2,10 +2,6 @@ var express = require('express');
 var router = express.Router();
 var database = require("../lib/database");
 
-
-
-//module.exports = router;
-
 module.exports = function (passport) {
     router.post('/sign_up_user', async function (req, res) {
         try {
@@ -25,10 +21,12 @@ module.exports = function (passport) {
         }
     });
     router.get("/login/success", function (req, res) {
+        console.log("Login Success");
         res.json({ success: true });
     });
 
     router.get('/login/fail', function (req, res) {
+        console.log("Login Fail");
         res.json({ success: false });
     });
 
@@ -45,6 +43,15 @@ module.exports = function (passport) {
             res.json({ success: true });
         });
     });
+
+    router.get("",function(req,res){
+
+        res.json({
+            success:true,
+            type:"",//해야댐
+            info:req.user
+        })
+    })
 
     return router;
 }
