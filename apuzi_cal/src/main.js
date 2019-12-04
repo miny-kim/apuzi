@@ -14,11 +14,7 @@ Vue.use(Vuetify);
 
 Vue.use(DaySpanVuetify, {
   methods: {
-    getDefaultEventColor: () => '#1976d2',
-    getDefaultEventDetails: () => {
-      console.log("DDD");
-      //"{data:{title:'dd',color: '#3F51B5'},schedule: {weekspanOfMonth: '[0]', dayOfWeek: '[Weekday.FRIDAY]', duration: '3', durationUnit: 'days'}"
-    }
+    getDefaultEventColor: () => '#1976d2'
   },
 });
 

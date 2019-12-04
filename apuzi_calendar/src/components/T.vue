@@ -11,7 +11,6 @@
         <router-link :to="{name:'register'}"> 
         <input type="button" value="글쓰기">
             </router-link>
-     
          <div id="text">
                 <table id="table">
                     <thead>
@@ -46,9 +45,12 @@
 <script>
 export default {
   name: 'T',
+  props: ['myindex'],
   data () {
     return {
+        myindex:'',
         text_name: '',
+        array_text: '',
       texts: [{
           idx:1,
           title:"1111",
@@ -62,14 +64,16 @@ export default {
       selected:"title",
     }
   },
-//    created () {
-//        let idx = this.$route.params.idx;
-//     this.$http.get(`/board/${idx}`)
-//     .then((response) => {
-//       this.texts = response.data;
-//       console.log(this.texts[0]);
-//     })
-//   },
+   created () { //초기에는 무조건 /1?
+    //    let idx = 1;
+    // this.$http.get(`/board/${idx}`)
+    // .then((response) => {
+    //   this.texts = response.data;
+    //   console.log(this.texts[0]);
+    // })
+
+
+  },
   computed:{
       filtered(){
             let name = this.text_name;
@@ -88,8 +92,21 @@ export default {
             return this.texts;
 
         }
-
   },
+  watch: {
+    myindex: function(){
+       console.log("sssssss"+this.myindex);
+       
+     //    let idx = this.myindex;
+    // this.$http.get(`/board/${idx}`)
+    // .then((response) => {
+    //   this.texts = response.data;
+    //   console.log(this.texts[0]);
+    // })
+    }
+      
+  },
+
   methods: {
   },
 }

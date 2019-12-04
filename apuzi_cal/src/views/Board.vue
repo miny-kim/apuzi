@@ -17,7 +17,10 @@ export default {
   components:{
       T,
       Board
-  }
+  },
+  created () {
+  this.$router.replace({name: 'board'});
+  },
 }
 </script>
 

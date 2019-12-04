@@ -1,9 +1,9 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Router from "vue-router";
+import Home from "../views/Home.vue";
+import 'fullcalendar/dist/fullcalendar.css'
 
-Vue.use(VueRouter)
-
+Vue.use(Router)
 const routes = [{
         path: '/',
         name: 'home',
@@ -57,11 +57,11 @@ const routes = [{
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         component: function() {
-            return import ( /* webpackChunkName: "about" */ '../views/Booking.vue')
+            return import ( /* webpackChunkName: "about" */ '../views/Book.vue')
         }
     },
     {
-        path: '/board/:idx',
+        path: '/:idx',
         name: 'board_idx',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
@@ -69,8 +69,7 @@ const routes = [{
         component: function() {
             return import ( /* webpackChunkName: "about" */ '../views/Board.vue')
         }
-    },
-    {
+    },{
         path: '/board/register',
         name: 'register',
         // route level code-splitting
@@ -82,7 +81,8 @@ const routes = [{
     },
 ]
 
-const router = new VueRouter({
+
+const router = new Router({
     mode: 'history',
     base: process.env.BASE_URL,
     routes
