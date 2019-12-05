@@ -1,18 +1,21 @@
 <template>
     <div class = "container">
-        <label for="title"><b>Title</b></label>
-        <input type="text" id ="title" v-model="title"  required="">
+        <label for="title"><h3>Title</h3></label>
         <br>
-        
-        <label for="contents"><b>Contents</b></label>
-        <input type="text" v-model="contents" id ="contents" required="">
-        <br><input type="file" accept="image/*" @change="onChange" id="file-input">
+        <textarea v-model="title"  required="" id ="title"></textarea>
+        <br>
+        <br>
+        <label for="contents"><h3>Contents</h3></label>
+        <textarea v-model="contents" id ="contents" required=""></textarea>
+
+
+        <input type="file" accept="image/*" @change="onChange" id="file-input">
 
         <br>
         <br>
         <br>
 
-        <input type="button" value="등록" v-on:click = "register">
+        <input type="button" value="글 쓰기" v-on:click = "register">
         <br>
     </div>
 </template>
@@ -26,14 +29,9 @@ export default {
 
     }
   },
-  created() {
-    
-    var idx = this.$route.params.idx;
-    console.log("register"+ idx);
-  },
   methods: {
     register : function(){
-      this.$http.post('/board//:idx/register', 
+      this.$http.post('/board/register', 
       {title: this.title, contents: this.contents, img:this.image}).then(response => {
                 console.warn(response)
                 this.result = response.data
@@ -53,29 +51,40 @@ export default {
 
 
 <style scoped>
-.container{
-    border: 2px solid grey;
-    box-sizing: border-box;
 
+.container:after{
+  
+  content:"";
+  position:absolute;
+  top: 0;
+  left: 0;
+  margin: 0px 0px 60px 0px;
+  width:100%;
+  height: 100%;
+  opacity: 0.5;
+  z-index: -1;
+  background-image: url("../../public/images/main_5.jpg")
 }
-#contents{ 
-    width: 50%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 2px solid grey;
-    box-sizing: border-box;
-    border-radius: 4px;
-    text-align: center;
-  }
+
 #title{ 
-    width: 50%;
-    padding: 12px 20px;
-    margin: 8px 0;
+    width: 1000px;
+    height: 40px;
+    margin: 5px 5px 0px 12px;
     display: inline-block;
     border: 2px solid grey;
     box-sizing: border-box;
     border-radius: 4px;
-    text-align: center;
-  }
+}
+
+
+#contents{ 
+    width: 1000px;
+    height: 300px;
+    margin: 5px 5px 5px 12px;
+    display: inline-block;
+    border: 2px solid grey;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
 </style>
