@@ -27,7 +27,7 @@ export default {
           idx:1
       },
       {
-          name:"자유",
+          name:"ddd",
           idx:2
       }],
       selected:"",

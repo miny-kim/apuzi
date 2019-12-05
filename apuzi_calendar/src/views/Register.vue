@@ -26,9 +26,14 @@ export default {
 
     }
   },
+  created() {
+    
+    var idx = this.$route.params.idx;
+    console.log("register"+ idx);
+  },
   methods: {
     register : function(){
-      this.$http.post('/board/register', 
+      this.$http.post('/board//:idx/register', 
       {title: this.title, contents: this.contents, img:this.image}).then(response => {
                 console.warn(response)
                 this.result = response.data
