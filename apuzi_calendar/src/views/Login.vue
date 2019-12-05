@@ -12,9 +12,6 @@
             <button type="submit" v-on:click="login_button" id="login">Login</button>
             <router-link :to = "{name:'sign_up'}"> <button type="button" class="sign_up">Sign up</button></router-link>
             <p></p>
-            <input type="checkbox" checked="checked" name="remember"> Remember me
-            <p></p>
-            <span class="psw">Forgot <a href="#">password</a>?</span>
     </div>
 </div>
 
