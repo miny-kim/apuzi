@@ -33,8 +33,8 @@ export default {
     register : function(){
     
     var idx = this.$route.params.idx;
-    console.log("idx______"+idx);
-      this.$http.post('/board/${idx}/register', 
+    console.log("idx____d__"+idx);
+      this.$http.post(`/board/${idx}/register`, 
       {title: this.title, contents: this.contents, img:this.image}).then(response => {
                 console.warn(response)
                 this.result = response.data
