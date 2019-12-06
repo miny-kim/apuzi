@@ -88,9 +88,7 @@ export default{
         }
     else if(!this.email.includes("@")){
         alert("check email");
-        this.pw ='';
-        this.pw2 ='';
-
+       this.email =''
     }
     else{
         alert("check password");
