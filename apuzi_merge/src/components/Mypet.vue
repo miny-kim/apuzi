@@ -7,7 +7,7 @@
                 <button>{{item.idx}}</button>
                 {{item.name}}
                 <hr />
-                <!--router-link :to="{name:'board_idx', params:{idx: item.idx}}"></router-link-->
+                <router-link :to="{name:'addpet', params:{idx: item.idx}}"></router-link>
             </div>
         </div>
     </div>

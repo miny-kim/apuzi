@@ -52,7 +52,7 @@ const routes = [{
         }
     },
     {
-        path: '/booking',
+        path: '/my',
         name: 'booking',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
@@ -93,6 +93,7 @@ const routes = [{
             return import ( /* webpackChunkName: "about" */ '../views/Register.vue')
         }
     },
+    
 ]
 
 
