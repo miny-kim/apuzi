@@ -7,6 +7,7 @@ router.get("/", async function (req, res) {
     let hospitals = [];
     doctors.forEach(doctor => {
         hospitals.push({
+            id:doctor.id,
             hospital: doctor.hospital_name,
             latlng: doctor.latlng
         })

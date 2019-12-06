@@ -25,6 +25,18 @@ router.get("/:idx/p_id",async function(req,res){
     }
 
 });
+router.post('/:idx/register', async function (req, res) {
+    try {
+        const insertedId=await database.createListing("boards"+req.params.idx,req.body);
+        await database.pushElementInListing(
+            "users",{id:req.user.id},{texts:insertedId}
+        );
+        
+        res.json({ success:true });
+    } catch (e) {
+        res.json({ success: false });
+    }
+});
 
 router.get('/:idx', async function (req, res) {
     try {
@@ -35,18 +47,6 @@ router.get('/:idx', async function (req, res) {
     }
 });
 
-router.post('/register', async function (req, res) {
-    try {
-        // 어느게시판인지 필요
-        const insertedId=await database.pushElementInListing(
-            "users",{id:req.user.id},{texts:insertedId}
-        );
-        
-        res.json({ success:true });
-    } catch (e) {
-        res.json({ success: false });
-    }
-});
 
 
 module.exports = router;
