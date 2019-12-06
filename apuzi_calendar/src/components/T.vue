@@ -8,7 +8,7 @@
         </select> 
         <input type="text" v-model="text_name" placeholder="검색" />
          <span id="write">
-    <router-link :to="{name:'register'}"> 
+    <router-link :to="{name:'register', params: {idx:myindex}}"> 
         <input type="button" value="글쓰기">
     </router-link>
   </span>

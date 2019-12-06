@@ -31,7 +31,10 @@ export default {
   },
   methods: {
     register : function(){
-      this.$http.post('/board/register', 
+    
+    var idx = this.$route.params.idx;
+    console.log("idx______"+idx);
+      this.$http.post('/board/${idx}/register', 
       {title: this.title, contents: this.contents, img:this.image}).then(response => {
                 console.warn(response)
                 this.result = response.data
