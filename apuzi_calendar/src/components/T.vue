@@ -88,14 +88,14 @@ export default {
     }
   },
    created () { //초기에는 무조건 첫번째 게시판의 1페이지
-    //    let idx = 1;
-    //     let p_id = 1;
-    // this.$http.get(`/board/${idx}/${p_id}`)
-    // .then((response) => {
-    //   this.texts = response.data.text;
-    //  this.text_length =response.data.text_length;
-    //   console.log(this.texts[0]);
-    // })
+   let idx = 1;
+   let p_id = 1;
+    this.$http.get(`/board/${idx}/${p_id}`)
+    .then((response) => {
+      this.texts = response.data.text;
+     this.text_length =response.data.text_length;
+      console.log(this.texts[0]);
+    })
         console.log("sssssss"+this.myindex);
         let page = Math.floor(this.text_length / 10);
         if (this.text_length  % 10 > 0) page += 1;
@@ -124,24 +124,24 @@ export default {
   watch: {
     myindex: function(){
         console.log("sssssss"+this.myindex);
-          //    let idx = this.myindex;
-    //le p_id= 1;
-    // this.$http.get(`/board/${idx}/${p_id}`)
-    // .then((response) => {
-    //   this.texts = response.data;
-    //   console.log(this.texts[0]);
-    // })
+        let idx = this.myindex;
+        let p_id= 1;
+        this.$http.get(`/board/${idx}/${p_id}`)
+        .then((response) => {
+            this.texts = response.data;
+            console.log(this.texts[0]);
+            })
       
   },
   pageNum: function(){
       console.log(this.pageNum+"DDD"+this.myindex);
-    //    let idx = this.myindex;
-    //le p_id= this.pageNum;
-    // this.$http.get(`/board/${idx}/${p_id}`)
-    // .then((response) => {
-    //   this.texts = response.data;
-    //   console.log(this.texts[0]);
-    // })
+       let idx = this.myindex;
+    let p_id= this.pageNum;
+    this.$http.get(`/board/${idx}/${p_id}`)
+    .then((response) => {
+      this.texts = response.data;
+      console.log(this.texts[0]);
+    })
   }
 },
 methods: {

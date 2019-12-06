@@ -45,11 +45,11 @@ export default {
     created () {
       this.myindex =1;
     this.board_length = this.boards.length;
-    // this.$http.get('/board')
-    // .then((response) => {
-    //   this.boards = response.data;
+    this.$http.get('/board')
+    .then((response) => {
+      this.boards = response.data;
       
-    // })
+    })
   },
  methods: {
     get_texts: function(idx){
