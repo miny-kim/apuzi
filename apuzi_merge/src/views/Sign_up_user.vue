@@ -79,7 +79,7 @@ export default{
         this.email ='';
         }
     else{ 
-        this.$http.post('/sign_up_doctor', { id: this.id, pw : this.pw, hospital_name : this.hospital_name, address: this.address, doctor_name : this.doctor_name, email: this.email}
+        this.$http.post('/sign_up_user', { id: this.id, pw : this.pw, hospital_name : this.hospital_name, address: this.address, doctor_name : this.doctor_name, email: this.email}
             ).then(response => {
                 console.warn(response)
                 this.result = response.data
