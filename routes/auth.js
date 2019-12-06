@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var database = require("../lib/database");
+var path=require('path');
 
 module.exports = function (passport) {
     router.post('/sign_up_user', async function (req, res) {
@@ -47,7 +48,10 @@ module.exports = function (passport) {
             res.json({ success: true });
         });
     });
-
+    // router.get('/',function(req,res){
+    //     res.sendFile(path.join(__dirname,"../public/index.html"));
+    // })
+/*
     router.get("", function (req, res) {
         user=req.user;
         res.json({
@@ -56,6 +60,6 @@ module.exports = function (passport) {
             info: user
         })
     })
-
+*/
     return router;
 }

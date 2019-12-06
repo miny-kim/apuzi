@@ -12,6 +12,20 @@ router.get('/', async function (req, res) {
     }
 });
 
+router.get("/:idx/p_id",async function(req,res){
+    try{
+        const p_id=req.params.p_id;
+        const boards=await database.findMultipleListings("board"+req.params.idx);
+        res.json({
+            text:boards.slice((p_id-1)*10,p_id*10),
+            text_length:boards.length
+        });
+    }catch(e){
+        res.json({success:false});
+    }
+
+});
+
 router.get('/:idx', async function (req, res) {
     try {
         const board = await database.findOneListing("boards", { idx: req.user.idx });
@@ -21,9 +35,13 @@ router.get('/:idx', async function (req, res) {
     }
 });
 
-router.get('/register', async function (req, res) {
+router.post('/register', async function (req, res) {
     try {
-        await database.createListing() //????
+        // 어느게시판인지 필요
+        const insertedId=await database.pushElementInListing(
+            "users",{id:req.user.id},{texts:insertedId}
+        );
+        
         res.json({ success:true });
     } catch (e) {
         res.json({ success: false });
