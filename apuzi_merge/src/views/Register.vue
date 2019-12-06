@@ -38,7 +38,9 @@ export default {
       {title: this.title, contents: this.contents, img:this.image}).then(response => {
                 console.warn(response)
                 this.result = response.data
-                this.no = response.data.no
+                this.no = response.data.no 
+                this.$router.replace({name: 'board'});
+                    
             }).catch((ex) => {
                 console.warn("ERROR!!!!! : ",ex)
             })

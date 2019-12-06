@@ -2,14 +2,14 @@
 
 <template>
     <div>
-     <div v-for="item in pet_list" v-bind:key="item.idx">
+     <select v-for="item in pet_list" v-bind:key="item.idx">
             <p></p>
             <div class="mypet">
-                <button>{{item.name}}</button>
+                <option>{{item.name}}</option>
                 <hr />
                 <!--router-link :to="{name:'board_idx', params:{idx: item.idx}}"></router-link-->
             </div>
-        </div>
+        </select>
         
         <div>
          <v-date-picker 
