@@ -2,6 +2,15 @@
 
 <template>
     <div>
+     <div v-for="item in pet_list" v-bind:key="item.idx">
+            <p></p>
+            <div class="mypet">
+                <button>{{item.name}}</button>
+                <hr />
+                <!--router-link :to="{name:'board_idx', params:{idx: item.idx}}"></router-link-->
+            </div>
+        </div>
+        
         <div>
          <v-date-picker 
          v-model="picker" 
@@ -77,11 +86,37 @@ export default {
           times:["09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00"],
           p_time:"",
           minDate:tomorrow,
-          pet_list:'',
+          pet_list: [{
+          idx:1,
+          name:"짱아",
+          booking_info:[{
+              booking_id:11111,
+              booking_hosp:"hosp",
+              booking_time:11111
+          }]
+      },{
+          idx:2,
+          name:"초코",
+          booking_info:[{
+              booking_id:11111,
+              booking_hosp:"hosp",
+              booking_time:11111
+          }]
+      },
+      ],
           
   }),
+  // created () {
+  //   this.$http.get('/mypet')
+  //   .then((response) => {
+  //     this.pet_list = response.data;
+      
+  //     console.log(this.pet_list[0]);
+  //   })
+  // },
 
   methods:{
+    
     booking:function(){
         let id=this.$route.params.idx
         console.log(this.picker)
