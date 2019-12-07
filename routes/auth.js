@@ -51,15 +51,11 @@ module.exports = function (passport) {
     // router.get('/',function(req,res){
     //     res.sendFile(path.join(__dirname,"../public/index.html"));
     // })
-/*
-    router.get("", function (req, res) {
+
+    router.get("/info", function (req, res) {
         user=req.user;
-        res.json({
-            success: true,
-            type: user.status,
-            info: user
-        })
+        res.json(user);
     })
-*/
+
     return router;
 }

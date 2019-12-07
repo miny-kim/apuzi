@@ -8,7 +8,7 @@ router.get("/", async function (req, res) {
     doctors.forEach(doctor => {
         hospitals.push({
             id:doctor.id,
-            hospital: doctor.hospital_name,
+            title: doctor.hospital_name,
             latlng: doctor.latlng
         })
     })
@@ -20,7 +20,10 @@ router.get("/:idx", async function (req, res) {
 });
 
 router.post("/:idx", async function (req, res) {
-    //??
+    const data=req.body;
+    await database.pushElementInListing("pets",{_id=data._id},{booking_info:{
+        test:"test"
+    }})
 });
 
 module.exports = router;

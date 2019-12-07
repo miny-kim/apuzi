@@ -31,7 +31,7 @@ router.post('/addpet', async function (req, res) {
 
 router.post("/booking",async function(req,res){
     try {
-        //?????
+        //안씀
         res.json({ success: true });
     } catch (e) {
         console.log(e);

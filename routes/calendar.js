@@ -6,6 +6,7 @@ var database = require("../lib/database");
 router.get('/',async function (req,res){
     try{
         const user = await database.findOneListing("users",{id:req.user.id});
+        
         res.json(user.calendarList);
     }catch(e){
         res.json({success:false});

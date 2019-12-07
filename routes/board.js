@@ -4,16 +4,20 @@ var database = require("../lib/database");
 
 router.get('/', async function (req, res) {
     try {
-        let collections = await database.listCollections();
+        /*let collections = await database.listCollections();
         let boards=[];
         collections.forEach(collection=>{
             if(collection.name.includes("board")){
-                boards.push(collection);
+                if(collection.name!=="boardName"){
+                    boards.push(collection);
+                }
             }
+        });*/
+        const names=await database.findMultipleListings("boardName");
+        names.forEach(name=>{
+            delete name._id;
         });
-        console.log(boards);
-        res.end();
-        //res.json(boards);
+        res.json(names);
     } catch (e) {
         console.log(e);
         res.json({ success: false });
@@ -44,6 +48,7 @@ router.get("/:idx/:p_id",async function(req,res){
         console.log(data);
         res.json(data);
     }catch(e){
+        console.error(e);
         res.json({success:false});
     }
 
