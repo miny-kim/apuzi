@@ -21,7 +21,7 @@ router.get("/:idx", async function (req, res) {
 
 router.post("/:idx", async function (req, res) {
     const data=req.body;
-    await database.pushElementInListing("pets",{_id=data._id},{booking_info:{
+    await database.pushElementInListing("pets",{_id:data._id},{booking_info:{
         test:"test"
     }})
 });
