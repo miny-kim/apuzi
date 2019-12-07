@@ -13,7 +13,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     store: new MongoStore({
-        url:database.uri//+`/${database.dbName}`
+        url:"mongodb+srv://dbUser:Woo23IViADUOCm4J@cluster0-ekpvf.mongodb.net/apuz?retryWrites=true&w=majority"
     })
 }));
 
