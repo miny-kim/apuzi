@@ -4,12 +4,13 @@ var database = require("../lib/database");
 
 router.get('/', async function (req, res, next) {
     try {
-        const user = await database.findOneListingById("users", { id: req.user.id });
+        const user = await database.findOneListing("users", { id: req.user.id });
         let petList = [];
-        user.pet_list.forEach(async _id => {
+        for(const _id of user.pet_list){
             const pet = await database.findOneListing("pets", { _id: _id });
             petList.push(pet);
-        });
+        }
+        console.log("mypet.out",petList);
         res.json(petList);
     } catch (e) {
         console.log(e);
