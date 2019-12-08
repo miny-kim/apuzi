@@ -21,6 +21,13 @@ const routes = [{
         }
     },
     {
+        path: '/find_pw',
+        name: 'find_pw',
+        component: function() {
+            return import ( /* webpackChunkName: "about" */ '../views/find_pw.vue')
+        }
+    },
+    {
         path: '/sign_up_doctor',
         name: 'sign_up_doctor',
         component: function() {
@@ -52,8 +59,8 @@ const routes = [{
         }
     },
     {
-        path: '/my',
-        name: 'booking',
+        path: '/mypet',
+        name: 'mypet',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
@@ -62,16 +69,16 @@ const routes = [{
         }
     },
     {
-        path:'/map',
-        name:'map',
+        path: '/map',
+        name: 'map',
         component: map
     },
 
     {
-        path:'/map/:idx',
-        name:'map_idx',
-        component:function(){
-            return import('../views/map_book.vue')
+        path: '/map/:idx',
+        name: 'map_idx',
+        component: function() {
+            return import ('../views/map_book.vue')
         }
     },
     {
@@ -83,7 +90,7 @@ const routes = [{
         component: function() {
             return import ( /* webpackChunkName: "about" */ '../views/Board.vue')
         }
-    },{
+    }, {
         path: '/board/register',
         name: 'register',
         // route level code-splitting
@@ -93,7 +100,16 @@ const routes = [{
             return import ( /* webpackChunkName: "about" */ '../views/Register.vue')
         }
     },
-    
+    {
+        path: '/my_pet/addpet',
+        name: 'addpet',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: function() {
+            return import ( /* webpackChunkName: "about" */ '../components/Addpet.vue')
+        }
+    },
 ]
 
 

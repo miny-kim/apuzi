@@ -8,7 +8,7 @@
         <h3>
       <router-link to="/login">Login</router-link> |
       <router-link to="/board">Board</router-link> |
-      <router-link to="/booking">My Pet</router-link>|
+      <router-link to="/mypet">My Pet</router-link> |
       <router-link to="/map">Booking</router-link>
       <p></p>
         </h3>

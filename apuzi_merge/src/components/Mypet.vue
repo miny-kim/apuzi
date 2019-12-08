@@ -3,11 +3,13 @@
     <div >
         <div v-for="item in pet_list" v-bind:key="item.idx">
             <p></p>
+            
             <div class="mypet">
                 <button>{{item.idx}}</button>
                 {{item.name}}
                 <hr />
-                <router-link :to="{name:'addpet', params:{idx: item.idx}}"></router-link>
+                <router-link :to="{name:'addpet'}">Addpet</router-link>
+                <!--router-link :to="{name:'board_idx', params:{idx: item.idx}}"></router-link-->
             </div>
         </div>
     </div>
@@ -50,10 +52,10 @@ export default {
 
 <style scoped>
 .mypet {
-    height: 500px;
-    width: 300px;
+    height: 70%;
+    width: 70%;
     border: 3px solid;
-    margin: 120px 0px 0px 30px;
+    margin: 120px 0px 30px 30px;
     padding: 40px;
 }
 

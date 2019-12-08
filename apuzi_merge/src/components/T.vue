@@ -159,6 +159,12 @@ methods: {
 div {
     text-align: center;
 }
+button{
+    padding: 5px 5px 5px 5px;
+    margin: 5px 15px 15px 15px;
+    border: 1px solid grey;
+    border-radius: 8px;
+}
 #text td,
 #text th {
     text-align: center;

@@ -1,10 +1,9 @@
 <template>
     <div class = "container">
         <label for="title"><h3>Title</h3></label>
-        <br>
         <textarea v-model="title"  required="" id ="title"></textarea>
-        <br>
-        <br>
+        <p></p>
+        <p></p>
         <label for="contents"><h3>Contents</h3></label>
         <textarea v-model="contents" id ="contents" required=""></textarea>
 
@@ -71,22 +70,23 @@ export default {
   background-image: url("../../public/images/main_5.jpg")
 }
 
+
 #title{ 
     width: 1000px;
     height: 40px;
-    margin: 5px 5px 0px 12px;
-    display: inline-block;
-    border: 2px solid grey;
-    box-sizing: border-box;
-    border-radius: 4px;
+
 }
 
 
 #contents{ 
     width: 1000px;
     height: 300px;
-    margin: 5px 5px 5px 12px;
-    display: inline-block;
+}
+
+textarea{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
     border: 2px solid grey;
     box-sizing: border-box;
     border-radius: 4px;
