@@ -38,7 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', authRouter);
 app.use('/board', boardRouter);
-app.use('/my_pet', myPetRouter);
+app.use('/mypet', myPetRouter);
 app.use("/calendar",calenarRouter);
 app.use("/map",mapRouter);
 
