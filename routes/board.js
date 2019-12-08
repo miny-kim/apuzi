@@ -42,22 +42,25 @@ router.get('/:idx/text/:t_idx',async function(req,res){
 router.post('/:idx/register', async function (req, res) {
     try {
         let data=req.body;
-        let temp=await database.findOneListing("boardName",{idx:Number.parseInt(req.params.idx)});
-        let idx=temp.number;
+        let idx=Number.parseInt(req.params.idx);
+        let temp=await database.findOneListing("boardName",{idx:idx});
+        let number=temp.number;
         console.log("po",idx);
-        await database.upsertListing("boardName",{number:idx+1});
+        await database.upsertListing("boardName",{idx:idx},{number:number+1});
         data.idx=idx+1;
         data.writer=req.user.nickname;
         data.view=0;
         data.like=0;
         data.time=new Date();
-        const insertedId=await database.createListing("board"+req.params.idx,req.body);
+        const insertedId=await database.createListing("board"+idx,data);
+        console.log("???",insertedId);
         await database.pushElementInListing(
             "users",{id:req.user.id},{texts:insertedId}
         );
         
         res.json({ success:true });
     } catch (e) {
+        console.error(e);
         res.json({ success: false });
     }
 });

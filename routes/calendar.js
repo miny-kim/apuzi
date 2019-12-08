@@ -5,9 +5,19 @@ var database = require("../lib/database");
 
 router.get('/',async function (req,res){
     try{
-        const user = await database.findOneListing("users",{id:req.user.id});
-        //논의합시다.
-        //res.json(user.calendarList);
+        const user = await database.findListing("users",{id:req.user.id});
+        let calendarList=[];
+        for(cal_id of user.calendar_list){
+            let cal=await database.findOneListing("calendars",{_id:cal_id});
+            calendarList.push(cal);
+        }
+        for(pet_id of user.pet_list){
+            let pet=await database.findOneListing("pets",{_id:pet_id});
+            let cal=await database.findOneListing("calendars",{_id:pet._id});
+            calendarList.push(cal);
+        }
+        console.log(calendarList);
+        res.json(calendarList);
     }catch(e){
         res.json({success:false});
     }
@@ -16,9 +26,8 @@ router.get('/',async function (req,res){
 router.post('/',async function (req,res){
     try{
         const insertedId=await database.createListing("calendars",req.body);
-        console.log(req.body);
         await database.pushElementInListing("users",
-            {id:req.user.id},{calendarList:insertedId});
+            {id:req.user.id},{calendar_list:insertedId});
         res.json({success:true});
     }catch(e){
         res.json({success:false});
@@ -41,7 +50,7 @@ router.delete('/:id',async function (req,res){ // id!!!=ObjectId
         await database.deleteListing("calendars",{_id:req.body._id});
         await database.pullElementInListing("users",
             {id:req.user.id},
-            {calendarList:new ObjectId(req.params.id)}
+            {calendar_list:new ObjectId(req.params.id)}
             );
     }catch(e){
         res.json({success:false});
