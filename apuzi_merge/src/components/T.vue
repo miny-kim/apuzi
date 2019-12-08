@@ -23,17 +23,15 @@
                     <th>작성자</th>
                     <th class="col_2">작성시간</th>
                     <th class="col_2">조회수</th>
-                    <th class="col_2">좋아요</th>
                  </tr>
             </thead>
                 <tbody id="contents">
                     <tr v-for="item in filtered" v-bind:key="item.idx">
-                        <td>{{item.idx}}</td>
+                        <td v-on:click = "view">{{item.idx}}</td>
                         <td>{{item.title}}</td>
                         <td>{{item.writer}}</td>
                         <td class="col_1">{{item.time}}</td>
                         <td class="col_1">{{item.view}}</td>
-                        <td class="col_1">{{item.like}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -51,7 +49,6 @@
   </div>
 </template>
 
-
 <script>
 export default {
   name: 'T',
@@ -61,29 +58,10 @@ export default {
         myindex:1,
         pageNum: 0,
         pageCount:0,
-        text_length:100,
+        text_length:0,
         text_name: '',
         array_text: '',
-      texts: [{
-          idx:1,
-          title:"1111",
-          contents: "",
-          img:"",
-          writer:"miny",
-          time:"09",
-          view:1, 
-          like:3,
-      },
-      {
-          idx:2,
-          title:"ss",
-          contents: "",
-          img:"",
-          writer:"miny",
-          time:"09",
-          view:1, 
-          like:3,
-      }],
+      texts: [],
       selected:"title",
     }
   },
@@ -95,11 +73,11 @@ export default {
       this.texts = response.data.text;
      this.text_length =response.data.text_length;
       console.log(this.texts[0]);
-    })
-        console.log("sssssss"+this.myindex);
+      console.log("게시판 글 수는!!"+this.text_length);
         let page = Math.floor(this.text_length / 10);
         if (this.text_length  % 10 > 0) page += 1;
         this.pageCount = page;
+    })
   },
   computed:{
       filtered(){
@@ -128,24 +106,30 @@ export default {
         let p_id= 1;
         this.$http.get(`/board/${idx}/${p_id}`)
         .then((response) => {
-            this.texts = response.data;
-            console.log(this.texts[0]);
+            this.texts = response.data.text;
+            this.text_length =response.data.text_length;
+      console.log("게시판 글 수는!!"+this.text_length);
             })
       
   },
   pageNum: function(){
       console.log(this.pageNum+"DDD"+this.myindex);
        let idx = this.myindex;
-    let p_id= this.pageNum;
-    this.$http.get(`/board/${idx}/${p_id}`)
+       let p_id= this.pageNum;
+       this.$http.get(`/board/${idx}/${p_id}`)
     .then((response) => {
-      this.texts = response.data;
-      console.log(this.texts[0]);
+      this.texts = response.data.text;
+     this.text_length =response.data.text_length;
+      console.log("게시판 글 수는!!"+this.text_length);
     })
   }
 },
 methods: {
-       nextPage () {
+    view(){
+        console.log("글 보여줘");
+        //글보여주기 기능 구현
+    },
+    nextPage () {
       this.pageNum += 1;
     },
     prevPage () {
@@ -154,7 +138,6 @@ methods: {
 },
 }
 </script>
-
 <style scoped>
 div {
     text-align: center;

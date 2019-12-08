@@ -35,6 +35,7 @@ export default {
   },
 
   created(){
+    
      EventBus.$on('authenticated', function(text){ 
         this.authenticated = 1;
         console.log("authenticated..__"+this.authenticated); 

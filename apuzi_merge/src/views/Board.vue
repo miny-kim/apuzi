@@ -86,7 +86,7 @@ export default {
 
 .board {
    float: left;
-    height: 300px;
+    height: 400px;
     width: 20%;
     border: 3px solid;
     margin: auto;

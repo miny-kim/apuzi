@@ -12,7 +12,7 @@
             <div id="space">
             </div>
             <button type="submit" v-on:click="login_button" id="login"><b>Login</b></button>
-            <router-link :to = "{name:'sign_up'}"> <button type="button" class="sign_up"><b>Sign up</b></button></router-link>
+            <router-link :to = "{name:'sign_up_user'}"> <button type="button" class="sign_up"><b>Sign up</b></button></router-link>
             <p></p>
             <span class="psw">Forgot <router-link to="/find_pw">password</router-link>?</span>
     </div>

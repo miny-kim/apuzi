@@ -46,11 +46,10 @@
 <script>
 import { requestsMixin } from "../../mixins/requestsMixin";
 import * as moment from "moment";
-import mom from "moment-timezone";
 
 require('moment-timezone');
 
-mom.tz.setDefault("Asia/Seoul");
+moment.tz.setDefault("Asia/Seoul");
 export default {
   
   name: "CalendarForm",
@@ -75,15 +74,16 @@ export default {
   },
   methods: {
     async onSubmit() {
+      var f_start;
       const isValid = await this.$refs.observer.validate();
       if (!isValid) {
         return;
       }
-      require('moment-timezone');
       moment.tz.setDefault("Asia/Seoul");
       console.log(moment().format('YYYY-MM-DD HH:mm:ss'));
-      this.form.start = moment(this.form.start,"YYYY-MM-DD HH:mm:ss");
-      this.form.end = moment(this.form.end,"YYYY-MM-DD HH:mm:ss");
+      this.form.start  = moment(this.form.start,'YYYY-MM-DD[T]kk:mm:ss A').add(9, 'k').format();
+      this.form.end  = moment(this.form.end,'YYYY-MM-DD[T]kk:mm:ss A').format();
+
       if (this.edit) {
         await this.editCalendar(this.form);
       } else {
