@@ -23,12 +23,16 @@ router.get('/', async function (req, res) {
         res.json({ success: false });
     }
 });
-router.get('/:idx/text/t_idx',async function(req,res){
+router.get('/:idx/text/:t_idx',async function(req,res){
     try{
         let text=await database.findOneListing("board"+req.params.idx,{
-            idx:req.params.t_idx
+            idx:Number.parseInt(req.params.t_idx)
         });
-        ++text.view;
+        await database.upsertListing("board"+req.params.idx,{
+            idx:Number.parseInt(req.params.t_idx)
+        },{
+            view:++text.view
+        })
         res.json(text);   
     }catch(e){
         res.json({success:false});
@@ -38,13 +42,15 @@ router.get('/:idx/text/t_idx',async function(req,res){
 router.post('/:idx/register', async function (req, res) {
     try {
         let data=req.body;
-        let idx=await database.findOneListing("boardName",{idx:req.params.idx}).number;
+        let temp=await database.findOneListing("boardName",{idx:Number.parseInt(req.params.idx)});
+        let idx=temp.number;
+        console.log("po",idx);
         await database.upsertListing("boardName",{number:idx+1});
         data.idx=idx+1;
         data.writer=req.user.nickname;
         data.view=0;
         data.like=0;
-        data.time=new Date().toISOString();
+        data.time=new Date();
         const insertedId=await database.createListing("board"+req.params.idx,req.body);
         await database.pushElementInListing(
             "users",{id:req.user.id},{texts:insertedId}
