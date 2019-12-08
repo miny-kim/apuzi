@@ -67,9 +67,9 @@ router.post('/:idx/register', async function (req, res) {
 
 router.get("/:idx/:p_id",async function(req,res){
     try{
-        
         const p_id=req.params.p_id;
-        const boards=await database.findMultipleListings("board"+req.params.idx);
+        let boards=await database.findMultipleListings("board"+req.params.idx);
+        boards=boards.reverse();
         data={
             text:boards.slice((p_id-1)*10,p_id*10),
             text_length:boards.length
