@@ -30,6 +30,7 @@ router.get('/',async function (req,res){
 router.post('/',async function (req,res){
     try{
         const insertedId=await database.createListing("calendars",req.body);
+        await database.upsertListing("calendars",{_id:insertedId},{id:insertedId});
         await database.pushElementInListing("users",
             {id:req.user.id},{calendar_list:insertedId});
         res.json({success:true});
@@ -56,6 +57,7 @@ router.delete('/:id',async function (req,res){ // id!!!=ObjectId
             {id:req.user.id},
             {calendar_list:new ObjectId(req.params.id)}
             );
+        res.json({success:true});
     }catch(e){
         res.json({success:false});
     }
