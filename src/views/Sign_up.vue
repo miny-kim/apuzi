@@ -23,25 +23,24 @@
 *{
     text-align: center;
 }
-#container{
-    background: center;
-    background-color: gray;
-    position: relative;
-    margin-left: 35%;
-}
+
+
 .doctor{ 
-    float: left;
-    width: 200px;
-    height: 200px;
-    cursor: pointer;
-    margin-right:20px;
+    width:              200px;
+  height:             200px;
+  margin:             10px;   
 }
 
 .user{
-    float: left;
-    width: 200px;
-    height: 200px;
-    cursor: pointer;
+    width:              200px;
+  height:             200px;
+  margin:             10px;   
+}
+#container{
+    display:         flex;
+  flex-wrap:       wrap;
+  justify-content: center;
+  
 }
 .doctor > button {
     width:100px;

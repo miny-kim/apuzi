@@ -1,12 +1,11 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Router from "vue-router";
+import Home from "../views/Home.vue";
 import map from '../views/Map.vue'
+import 'fullcalendar/dist/fullcalendar.css'
 
-Vue.use(VueRouter)
-
-const routes = [
-    {
+Vue.use(Router)
+const routes = [{
         path: '/',
         name: 'home',
         component: Home
@@ -21,7 +20,6 @@ const routes = [
             return import ( /* webpackChunkName: "about" */ '../views/Login.vue')
         }
     },
-    
     {
         path: '/sign_up_doctor',
         name: 'sign_up_doctor',
@@ -29,7 +27,6 @@ const routes = [
             return import ( /* webpackChunkName: "about" */ '../views/Sign_up_doctor.vue')
         }
     },
-
     {
         path: '/sign_up_user',
         name: 'sign_up_user',
@@ -47,7 +44,6 @@ const routes = [
             return import ( /* webpackChunkName: "about" */ '../views/Board.vue')
         }
     },
-
     {
         path: '/sign_up',
         name: 'sign_up',
@@ -55,15 +51,14 @@ const routes = [
             return import ( /* webpackChunkName: "about" */ '../views/Sign_up.vue')
         }
     },
-    
     {
-        path: '/booking',
+        path: '/my',
         name: 'booking',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         component: function() {
-            return import ( /* webpackChunkName: "about" */ '../views/Booking.vue')
+            return import ( /* webpackChunkName: "about" */ '../views/Book.vue')
         }
     },
     {
@@ -79,7 +74,6 @@ const routes = [
             return import('../views/map_book.vue')
         }
     },
-    
     {
         path: '/:idx',
         name: 'board_idx',
@@ -89,14 +83,21 @@ const routes = [
         component: function() {
             return import ( /* webpackChunkName: "about" */ '../views/Board.vue')
         }
+    },{
+        path: '/board/register',
+        name: 'register',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: function() {
+            return import ( /* webpackChunkName: "about" */ '../views/Register.vue')
+        }
     },
-
-    
-    
     
 ]
 
-const router = new VueRouter({
+
+const router = new Router({
     mode: 'history',
     base: process.env.BASE_URL,
     routes

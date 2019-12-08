@@ -17,10 +17,10 @@
             <input type="text" v-model="id"  placeholder="Enter Id" required="">
             <br>
             <label for="psw1"><b>Password</b></label>
-            <input type="text" v-model="pw"  placeholder="Enter pw" required="">
+            <input type="password" v-model="pw"  placeholder="Enter pw" required="">
             <br>
             <label for="d_psw2"><b>Password Confirm </b></label>
-            <input type="text" v-model="pw2"  placeholder="Enter pw2" required="">
+            <input type="password" v-model="pw2"  placeholder="Enter pw2" required="">
             <br>
             <label for="h_name"><b>Hospital name</b></label>
             <input type="text" v-model="hospital_name" placeholder="Enter hospital name" maxlength="100" required="">
@@ -52,16 +52,29 @@ export default{
             id: '',
             pw : '',
             pw2:'',
+            pwcheck:'',
             hospital_name : '',
             address : '',
             doctor_name: '',
-            email: ''
+            email: '',s
         }
     },
     methods: {
+        
     sign_up_button: function(){ //post
-   if(this.pw == this.pw2&& (this.pw.length >=6 && this.pw.length<=12)){ //pw입력 오류
-         this.$http.post('/sign_up_doctor', { id: this.id, pw : this.pw, hospital_name : this.hospital_name, address: this.address, doctor_name : this.doctor_name, email: this.email}
+    console.log(this.pw.length);
+    if(this.pw != this.pw2 || this.pw.length <6 || this.pw.length>=12){
+        alert("Please check password");
+        this.pw ='';
+        this.pw2 ='';
+
+    }
+    else if(!this.email.includes("@")){
+        alert("Please check email");
+        this.email ='';
+        }
+    else{ 
+        this.$http.post('/sign_up_doctor', { id: this.id, pw : this.pw, hospital_name : this.hospital_name, address: this.address, doctor_name : this.doctor_name, email: this.email}
             ).then(response => {
                 console.warn(response)
                 this.result = response.data
@@ -70,20 +83,9 @@ export default{
                 console.warn("ERROR!!!!! : ",ex)
             })
         }
-        else if(!this.email.includes("@")){
-        alert("check email");
-        this.pw ='';
-        this.pw2 ='';
-
-    }
-    else{
-        alert("remain");
-        this.pw ='';
-        this.pw2 ='';
     }
     }
   }
-}
 </script>
 
 <style scoped>

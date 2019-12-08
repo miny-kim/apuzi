@@ -1,8 +1,11 @@
 
 
 <template>
-    <div>
+    <div>   
+      <v-app>
         <div>
+          
+          
          <v-date-picker 
          v-model="picker" 
          color="green lighten-1"
@@ -13,15 +16,18 @@
          v-bind:landscape="$vuetify.breakpoint.smAndUp"></v-date-picker>
          </div>
 
+        <span>
         <v-btn
         v-for="time in times"
         v-bind:key="time"
         color="primary"
         dark
+        width="100"
         @click.stop="dialog = true"
         @click="p_time=time">
         {{time}}
         </v-btn>
+        </span>
 
         <v-dialog
         v-model="dialog"
@@ -54,6 +60,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+  </v-app>
     </div>
 </template>
 
@@ -76,11 +83,20 @@ export default {
           dialog: false,
           times:["09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00"],
           p_time:"",
-          minDate:tomorrow,
+          minDate:tomorrow
           
   }),
+  // created () {
+  //   this.$http.get('/mypet')
+  //   .then((response) => {
+  //     this.pet_list = response.data;
+      
+  //     console.log(this.pet_list[0]);
+  //   })
+  // },
 
   methods:{
+    
     booking:function(){
         let id=this.$route.params.idx
         console.log(this.picker)

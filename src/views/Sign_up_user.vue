@@ -17,10 +17,10 @@
             <input type="text" v-model="id"  placeholder="Enter ID" required="">
             <br>
             <label for="pw"><b>Password</b></label>
-            <input type="text" v-model="pw"  placeholder="Password length must be 6 to 12" required="">
+            <input type="password" v-model="pw"  placeholder="Password length must be 6 to 12" required="">
             <br>
             <label for="pw2"><b>Password Confirm </b></label>
-            <input type="text" v-model="pw2"  placeholder="Please password check" required="">
+            <input type="password" v-model="pw2"  placeholder="Please password check" required="">
             <br>
             <label for="user_name"><b>User name</b></label>
             <input type="text" v-model="user_name" placeholder="Enter User name" required="">
@@ -34,6 +34,7 @@
             <br>
             <label for="address"><b>User Address</b></label>
             <input type="text" v-model="address" placeholder="Enter address" maxlength="100" required="">
+            <button v-on:click="post_code">우편번호 찾기</button>
             <br>
 
             <label for="email"><b>User Email</b></label>
@@ -57,27 +58,31 @@ export default{
             user_name:'',
             nickname : '',
             address : '',
+            detail_address:'',
             p_num: '',
             email: ''
         }
     },
+
     methods: {
     sign_up_button: function(){ //post
     // if(this.ID){ // Id 중복 체크
     // db에서 불러와서 중복 체크..
 
     // }
-    if(this.pw == this.pw2&& (this.pw.length >=6 && this.pw.length<=12)){ //pw입력 오류
-        console.log(this.pw.length);
-        this.$http.post('/sign_up_user', {
-           id: this.id,
-           pw : this.pw, 
-           user_name : this.user_name, 
-           nickname : this.nickname, 
-           address: this.address, 
-           p_num: this.p_num,
-           email: this.email
-           }
+     console.log(this.pw.length);
+    if(this.pw != this.pw2 || this.pw.length <6 || this.pw.length>=12){
+        alert("Please check password");
+        this.pw ='';
+        this.pw2 ='';
+
+    }
+    else if(!this.email.includes("@")){
+        alert("Please check email");
+        this.email ='';
+        }
+    else{ 
+        this.$http.post('/sign_up_user', { id: this.id, pw : this.pw, hospital_name : this.hospital_name, address: this.address, doctor_name : this.doctor_name, email: this.email}
             ).then(response => {
                 console.warn(response)
                 this.result = response.data
@@ -86,17 +91,45 @@ export default{
                 console.warn("ERROR!!!!! : ",ex)
             })
         }
-    else if(!this.email.includes("@")){
-        alert("check email");
-        this.pw ='';
-        this.pw2 ='';
+    },
 
-    }
-    else{
-        alert("check password");
-        this.pw ='';
-        this.pw2 ='';
-    }
+    post_code: function(){
+        const scope=this;
+
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+                
+                var addr = ''; // 주소 변수
+
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                //주소 정보를 해당 필드에 넣는다.
+                scope.address = addr;
+
+                // 주소-좌표 변환 객체를 생성합니다
+                var geocoder = new kakao.maps.services.Geocoder();
+
+                // 주소로 좌표를 검색합니다
+                geocoder.addressSearch(scope.address, function(result, status) {
+
+                // 정상적으로 검색이 완료됐으면 
+                if (status === kakao.maps.services.Status.OK) {
+
+                    console.log(result[0].y)
+                    console.log(result[0].x)
+                } 
+            }); 
+            }
+        }).open();
+
+
+        
+
     }
   }
 }
