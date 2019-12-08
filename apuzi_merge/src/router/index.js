@@ -75,10 +75,10 @@ const routes = [{
     },
 
     {
-        path: '/map/:idx',
-        name: 'map_idx',
+        path: '/map/book',
+        name: 'map_book',
         component: function() {
-            return import ('../views/map_book.vue')
+            return import ('../views/book_pet.vue')
         }
     },
     {

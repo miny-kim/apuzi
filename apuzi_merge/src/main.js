@@ -14,6 +14,7 @@ import axios from 'axios'
 import Vuetify from 'vuetify'
 import DaySpanVuetify from 'dayspan-vuetify'
 import 'vuetify/dist/vuetify.min.css'
+import vuetify from './plugins/vuetify';
 Vue.prototype.$http = axios
 
 Vue.use(Vuetify);
@@ -35,7 +36,8 @@ Vue.component('VueCtkDateTimePicker', VueCtkDateTimePicker);
 Vue.config.productionTip = false;
 
 new Vue({
-    router,
-    store,
-    render: h => h(App)
+  router,
+  store,
+  vuetify,
+  render: h => h(App)
 }).$mount("#app");
