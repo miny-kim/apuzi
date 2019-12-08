@@ -25,6 +25,14 @@ router.get('/', async function (req, res) {
 });
 router.post('/:idx/register', async function (req, res) {
     try {
+        let data=req.body;
+        let idx=await database.findOneListing("boardName",{idx:req.params.idx}).number;
+        await database.upsertListing("boardName",{number:idx+1});
+        data.idx=idx+1;
+        data.writer=req.user.nickname;
+        data.view=0;
+        data.like=0;
+        data.time=new Date(Date.now());
         const insertedId=await database.createListing("board"+req.params.idx,req.body);
         await database.pushElementInListing(
             "users",{id:req.user.id},{texts:insertedId}
