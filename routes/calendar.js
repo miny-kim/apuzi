@@ -5,7 +5,7 @@ var database = require("../lib/database");
 
 router.get('/',async function (req,res){
     try{
-        const user = await database.findListing("users",{id:req.user.id});
+        const user = await database.findOneListing("users",{id:req.user.id});
         let calendarList=[];
         for(cal_id of user.calendar_list){
             let cal=await database.findOneListing("calendars",{_id:cal_id});
@@ -14,11 +14,15 @@ router.get('/',async function (req,res){
         for(pet_id of user.pet_list){
             let pet=await database.findOneListing("pets",{_id:pet_id});
             let cal=await database.findOneListing("calendars",{_id:pet._id});
-            calendarList.push(cal);
+            if(cal){
+                calendarList.push(cal);
+
+            }
         }
         console.log(calendarList);
         res.json(calendarList);
     }catch(e){
+        console.error(e);
         res.json({success:false});
     }
 });
