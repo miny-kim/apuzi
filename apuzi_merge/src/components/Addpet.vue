@@ -70,7 +70,7 @@ export default {
     color: black;
     padding: 14px 20px 20px;
     margin: 70px 0px;
-    border: 2px solid burlywood;
+    border: 2px solid rgb(167, 77, 41);
     border-radius: 8px;
 }
 .container:after{

@@ -62,32 +62,31 @@ export default{
         }
     },
     methods: {
-    sign_up_button: function(){ //post
-    // if(this.ID){ // Id 중복 체크
-    // db에서 불러와서 중복 체크..
-
-    // }
-     console.log(this.pw.length);
-    if(this.pw != this.pw2 || this.pw.length <6 || this.pw.length>=12){
-        alert("Please check password");
-        this.pw ='';
-        this.pw2 ='';
-
-    }
-    else if(!this.email.includes("@")){
-        alert("Please check email");
-        this.email ='';
-        }
-    else{ 
-        this.$http.post('/sign_up_user', { id: this.id, pw : this.pw, hospital_name : this.hospital_name, address: this.address, doctor_name : this.doctor_name, email: this.email}
-            ).then(response => {
-                console.warn(response)
-                this.result = response.data
-                this.no = response.data.no
-            }).catch((ex) => {
-                console.warn("ERROR!!!!! : ",ex)
-            })
-        }
+    sign_up_button: function(){
+        //id 중복체크 필요
+        console.log(this.pw.length);
+        if(this.pw != this.pw2 || this.pw.length <6 || this.pw.length>=12){
+            alert("Please check password");
+            this.pw ='';
+            this.pw2 ='';
+            }
+        else if(!this.email.includes("@")){
+            alert("Please check email");
+            this.email ='';
+            }
+        else{ 
+            this.$http.post('/sign_up_user', { id: this.id, pw : this.pw, user_name : this.user_name, nickname: this.nickname, address : this.address, email: this.email, p_num: this.p_num}
+                ).then(response => {
+                   if(response.data.success == true){
+                    console.log("success"); 
+                    this.$router.push({name: 'login'});
+                    }  
+                    this.result = response.data
+                    this.no = response.data.no
+                }).catch((ex) => {
+                    console.warn("ERROR!!!!! : ",ex)
+                })
+            }
     }
   }
 }
