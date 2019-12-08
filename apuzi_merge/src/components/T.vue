@@ -23,7 +23,6 @@
                     <th>작성자</th>
                     <th class="col_2">작성시간</th>
                     <th class="col_2">조회수</th>
-                    <th class="col_2">좋아요</th>
                  </tr>
             </thead>
                 <tbody id="contents">
@@ -33,7 +32,6 @@
                         <td>{{item.writer}}</td>
                         <td class="col_1">{{item.time}}</td>
                         <td class="col_1">{{item.view}}</td>
-                        <td class="col_1">{{item.like}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -64,7 +62,7 @@ export default {
         text_length:100,
         text_name: '',
         array_text: '',
-      texts: [{
+      textss: [{
           idx:1,
           title:"1111",
           contents: "",
@@ -72,7 +70,6 @@ export default {
           writer:"miny",
           time:"09",
           view:1, 
-          like:3,
       },
       {
           idx:2,
@@ -82,7 +79,6 @@ export default {
           writer:"miny",
           time:"09",
           view:1, 
-          like:3,
       }],
       selected:"title",
     }
@@ -92,9 +88,9 @@ export default {
    let p_id = 1;
     this.$http.get(`/board/${idx}/${p_id}`)
     .then((response) => {
-      this.texts = response.data.text;
+      this.textss = response.data.text;
      this.text_length =response.data.text_length;
-      console.log(this.texts[0]);
+      console.log(this.textss[0]);
     })
         console.log("sssssss"+this.myindex);
         let page = Math.floor(this.text_length / 10);
@@ -106,17 +102,17 @@ export default {
             let name = this.text_name;
             console.log(name);
             if (this.selected == "title") {
-                return this.texts.filter(txt => {
+                return this.textss.filter(txt => {
                     return txt.title.includes(name);
                 });
             } 
             else {
-                return this.texts.filter(txt => {
+                return this.textss.filter(txt => {
                     return txt.title.includes(name);
                 });
             }
 
-            return this.texts;
+            return this.textss;
 
         },
        
@@ -128,8 +124,8 @@ export default {
         let p_id= 1;
         this.$http.get(`/board/${idx}/${p_id}`)
         .then((response) => {
-            this.texts = response.data;
-            console.log(this.texts[0]);
+            this.textss = response.data;
+            console.log(this.textss[0]);
             })
       
   },
@@ -139,8 +135,8 @@ export default {
     let p_id= this.pageNum;
     this.$http.get(`/board/${idx}/${p_id}`)
     .then((response) => {
-      this.texts = response.data;
-      console.log(this.texts[0]);
+      this.textss = response.data;
+      console.log(this.textss[0]);
     })
   }
 },

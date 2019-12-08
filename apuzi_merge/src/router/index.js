@@ -28,13 +28,6 @@ const routes = [{
         }
     },
     {
-        path: '/sign_up_doctor',
-        name: 'sign_up_doctor',
-        component: function() {
-            return import ( /* webpackChunkName: "about" */ '../views/Sign_up_doctor.vue')
-        }
-    },
-    {
         path: '/sign_up_user',
         name: 'sign_up_user',
         component: function() {
@@ -49,13 +42,6 @@ const routes = [{
         // which is lazy-loaded when the route is visited.
         component: function() {
             return import ( /* webpackChunkName: "about" */ '../views/Board.vue')
-        }
-    },
-    {
-        path: '/sign_up',
-        name: 'sign_up',
-        component: function() {
-            return import ( /* webpackChunkName: "about" */ '../views/Sign_up.vue')
         }
     },
     {
