@@ -34,6 +34,7 @@
             <br>
             <label for="address"><b>User Address</b></label>
             <input type="text" v-model="address" placeholder="Enter address" maxlength="100" required="">
+            <button v-on:click="post_code">우편번호 찾기</button>
             <br>
 
             <label for="email"><b>User Email</b></label>
@@ -57,10 +58,12 @@ export default{
             user_name:'',
             nickname : '',
             address : '',
+            detail_address:'',
             p_num: '',
             email: ''
         }
     },
+
     methods: {
     sign_up_button: function(){ //post
     // if(this.ID){ // Id 중복 체크
@@ -88,6 +91,45 @@ export default{
                 console.warn("ERROR!!!!! : ",ex)
             })
         }
+    },
+
+    post_code: function(){
+        const scope=this;
+
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+                
+                var addr = ''; // 주소 변수
+
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                //주소 정보를 해당 필드에 넣는다.
+                scope.address = addr;
+
+                // 주소-좌표 변환 객체를 생성합니다
+                var geocoder = new kakao.maps.services.Geocoder();
+
+                // 주소로 좌표를 검색합니다
+                geocoder.addressSearch(scope.address, function(result, status) {
+
+                // 정상적으로 검색이 완료됐으면 
+                if (status === kakao.maps.services.Status.OK) {
+
+                    console.log(result[0].y)
+                    console.log(result[0].x)
+                } 
+            }); 
+            }
+        }).open();
+
+
+        
+
     }
   }
 }
