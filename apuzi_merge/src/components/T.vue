@@ -21,9 +21,9 @@
                     <th>No</th>
                     <th>제목</th>
                     <th>작성자</th>
-                    <th>작성시간</th>
-                    <th>조회수</th>
-                    <th>좋아요</th>
+                    <th class="col_2">작성시간</th>
+                    <th class="col_2">조회수</th>
+                    <th class="col_2">좋아요</th>
                  </tr>
             </thead>
                 <tbody id="contents">
@@ -31,9 +31,9 @@
                         <td>{{item.idx}}</td>
                         <td>{{item.title}}</td>
                         <td>{{item.writer}}</td>
-                        <td>{{item.time}}</td>
-                        <td>{{item.view}}</td>
-                        <td>{{item.like}}</td>
+                        <td class="col_1">{{item.time}}</td>
+                        <td class="col_1">{{item.view}}</td>
+                        <td class="col_1">{{item.like}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -212,4 +212,22 @@ input[type=text] {
     display: inline-block;
     box-sizing: border-box;
 }
+
+@media (max-width: 768px) {
+    td.col_1{
+        display:none;
+        width:0;
+        height:0;
+        opacity:0;
+        visibility: collapse;       
+    } 
+    th.col_2{
+        display:none;
+        width:0;
+        height:0;
+        opacity:0;
+        visibility: collapse;       
+    } 
+}
+
 </style>

@@ -56,11 +56,16 @@ export default {
 
 <style scoped>
 .mypet {
-    height: 70%;
-    width: 70%;
+  float: left;
+    height: 300px;
+    width: 20%;
     border: 3px solid;
     margin: 120px 0px 30px 30px;
     padding: 40px;
 }
-
+@media (max-width: 768px) {
+  .mypet {
+    display: none;
+}
+}
 </style>

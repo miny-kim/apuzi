@@ -6,9 +6,9 @@
       </span>
       <div id="menu">
         <h3>
-      <router-link to="/login">Login</router-link> |
-      <router-link to="/board">Board</router-link> |
-      <router-link to="/mypet">My Pet</router-link> |
+      <router-link to="/login">Login</router-link> | 
+      <router-link to="/board">Board</router-link> | 
+      <router-link to="/mypet">My Pet</router-link> | 
       <router-link to="/map">Booking</router-link>
       <p></p>
         </h3>
@@ -47,6 +47,15 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+@media(max-width : 768px)
+{
+  #menu{
+  font-size: smaller;
+  text-align: center;
+}
+}
+
 </style>
 
 

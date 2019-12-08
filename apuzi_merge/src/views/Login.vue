@@ -150,4 +150,19 @@ span.psw {
         width: 100%;
     }
 }
+
+@media(max-width : 768px)/*768 보다 작으면*/
+{
+    button {
+    width: 15%;
+    background-color:none;
+    color: black;
+    padding: 0px 0px;
+    margin: 0px 10px;
+    border: 2px solid green;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+}
 </style>

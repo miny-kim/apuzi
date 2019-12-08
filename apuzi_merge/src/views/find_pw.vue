@@ -13,7 +13,7 @@
             
   </div>
   <p></p>
-  <button> 찾기 </button>
+  <button type="submit" v-on:click="find_button"><b>찾기</b></button>
 </div>
 </template>
 
@@ -28,6 +28,23 @@ export default {
             email:'',
         }
     },
+     methods: {
+    find_button: function(){ //post
+      console.log(this.id);
+      console.log(this.email);
+      this.$http.post('/login', { id: this.id, pw : this.email}
+            ).then(response => {
+                console.warn(response)
+                if(response.data.success == true){
+                    console.log("success"); 
+                    this.$router.push({name: 'login'});
+                    }  
+            }).catch((ex) => {
+                console.warn("ERROR!!!!! : ",ex)
+            });
+
+    }
+  }
 }
 </script>
 
@@ -54,7 +71,7 @@ width: 40%;
 height: 50%;
     background-color:none;
     color: black;
-    padding: 14px 20px 20px;
+    padding: 14px 0px 20px 0px;
     margin: 70px 0px;
     border: 2px solid burlywood;
     border-radius: 8px;
@@ -64,14 +81,27 @@ button {
     width: 15%;
     background-color:none;
     color: black;
-    padding: 14px 20px;
-    margin: 8px 10px;
+    padding: 14px 10px;
     border: 2px solid green;
     border-radius: 8px;
     cursor: pointer;
 }
 .space{
   padding: 20px 20px;
+}
+
+@media(max-width : 768px)/*768 보다 작으면*/
+{
+    button {
+    width: 15%;
+    background-color:none;
+    color: black;
+    padding: 14px 10px;
+    border: 2px solid green;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
 }
 
 </style>
