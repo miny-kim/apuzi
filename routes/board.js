@@ -46,8 +46,8 @@ router.post('/:idx/register', async function (req, res) {
         let temp=await database.findOneListing("boardName",{idx:idx});
         let number=temp.number;
         console.log("po",idx);
-        await database.upsertListing("boardName",{idx:++idx},{number:number+1});
-        data.idx=idx;
+        await database.upsertListing("boardName",{idx:idx},{number:number+1});
+        data.idx=number;
         data.writer=req.user.nickname;
         data.view=0;
         data.like=0;
