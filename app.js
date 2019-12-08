@@ -7,6 +7,7 @@ var database = require("./lib/database");
 var MongoStore =require("connect-mongo")(session);
 
 
+
 var app = express();
 app.use(session({
     secret: 'asadlfkj!@#!@#dfgasdg',
@@ -41,5 +42,7 @@ app.use('/board', boardRouter);
 app.use('/mypet', myPetRouter);
 app.use("/calendar",calenarRouter);
 app.use("/map",mapRouter);
+
+
 
 module.exports = app;

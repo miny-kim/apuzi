@@ -42,20 +42,24 @@ router.post('/',async function (req,res){
 
 router.put('/:id',async function (req,res){
     try{
-        await database.updateListing("calenadars",
-            {_id:req.body._id},req.body);
+        const id=req.params.id;
+        await database.updateListing("calendars",
+            {id:new ObjectId(id)},req.body);
+        console.log(id);
         res.json({success:true});    
     }catch(e){
+        console.error(e);
         res.json({success:false});
     }
 });
 
 router.delete('/:id',async function (req,res){ // id!!!=ObjectId
     try{
-        await database.deleteListing("calendars",{_id:req.body._id});
+        const id=req.params.id;
+        await database.deleteListing("calendars",{id:new ObjectId(id)});
         await database.pullElementInListing("users",
             {id:req.user.id},
-            {calendar_list:new ObjectId(req.params.id)}
+            {calendar_list:new ObjectId(id)}
             );
         res.json({success:true});
     }catch(e){

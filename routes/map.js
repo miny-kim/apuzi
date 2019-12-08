@@ -17,7 +17,7 @@ router.get("/:idx", async function (req, res) {
     //??    
 });
 
-router.post("/:idx", async function (req, res) {
+router.post("/book", async function (req, res) {
     const data=req.body;
     const insertedId=await database.createListing("calendars",data.calendar);
     await database.pushElementInListing("pets",{_id:data.pet_id},{
