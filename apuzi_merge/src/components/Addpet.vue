@@ -1,25 +1,30 @@
 <template>
     <div class = "container">
-        <label for="p_name"><b>Pet Name</b></label>
-            <p></p>
-            <input type="text" v-model="p_name" placeholder="Enter p_name" name="p_name" required>
-            <p></p>
-            
-        <input type="radio" id="female" value="female" v-model="p_sex">
+        <label for="p_name"><h5>Pet Name</h5></label>
+            <input type="text" v-model="p_name" placeholder="Enter pet name" name="p_name" required>
+            <div class="space">
+            </div>
+            <div id="select">
+            <b>sex</b> : 
+        <input type="radio" class="sex" value="female" v-model="p_sex">
         <label for="female">female</label>
-        <input type="radio" id="male" value="male" v-model="p_sex">
+        <input type="radio" class="sex" value="male" v-model="p_sex">
         <label for="male">male</label>
-        <p></p>
-        <input type="radio" id="dog" value="dog" v-model="p_type">
+          <div class="space">
+            </div>
+        <b>type</b> : 
+        <input type="radio" class="type" value="dog" v-model="p_type">
         <label for="dog">dog</label>
-        <input type="radio" id="cat" value="cat" v-model="p_type">
+        <input type="radio" class="type" value="cat" v-model="p_type">
         <label for="cat">cat</label>
-        <p></p>
-        <label for="p_age"><b>Pet age</b></label>
-            <p></p>
-            <input type="text" v-model="p_age" placeholder="Enter p_age" name="p_age" required>
-            <p></p>
-        <input type="button" id ="button" value="Register Pet" v-on:click = "register">
+         <div class="space">
+            </div>
+            </div>
+        <label for="p_age"><h5>Pet age</h5></label>
+            <input type="text" v-model="p_age" placeholder="Enter pet age" name="p_age" required>
+            <div class="space">
+            </div>
+        <button type="button" v-on:click = "register"><b>Register pet</b></button>
     </div>
 </template>
 
@@ -39,7 +44,7 @@ export default {
       console.log(this.p_age);
       console.log(this.p_sex);
       console.log(this.p_type);
-      this.$http.post('/my_pet/addpet', 
+      this.$http.post('/mypet/addpet', 
       {p_name:this.p_name,p_sex:this.p_sex,p_type:this.p_type,p_age:this.p_age}).then(response => {
                 console.warn(response)
                 this.result = response.data
@@ -65,7 +70,7 @@ export default {
     color: black;
     padding: 14px 20px 20px;
     margin: 70px 0px;
-    border: 2px solid burlywood;
+    border: 2px solid rgb(167, 77, 41);
     border-radius: 8px;
 }
 .container:after{
@@ -81,14 +86,44 @@ export default {
   z-index: -1;
   background-image: url("../../public/images/main_5.jpg")
 }
-#button {
+
+#select{
+  font-size:large;
+}
+
+input[type="radio"]+ label{
+  margin: 0px 10px 0px 5px;
+}
+
+input[type=text] {
+    width: 50%;
+    padding: 12px 10px;
+    margin: 8px 0px 0px 8px;
+    display: inline-block;
+    border: 2px solid grey;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+button:hover {
+    opacity: 0.8;
+    background-color:  rgb(167, 77, 41);
+    color: white;
+}
+
+.space{
+  padding: 20px 20px;
+}
+
+
+button {
    display: inline-block;
-    width: 20%;
+    width: 30%;
     background-color:none;
     color: black;
     padding: 14px 20px;
     margin: 8px 10px;
-    border: 2px solid green;
+    border: 2px solid  rgb(167, 77, 41);
     border-radius: 8px;
     cursor: pointer;
 }

@@ -75,10 +75,10 @@ const routes = [{
     },
 
     {
-        path: '/map/:idx',
-        name: 'map_idx',
+        path: '/map/book',
+        name: 'map_book',
         component: function() {
-            return import ('../views/map_book.vue')
+            return import ('../views/book_pet.vue')
         }
     },
     {
@@ -101,7 +101,7 @@ const routes = [{
         }
     },
     {
-        path: '/my_pet/addpet',
+        path: '/mypet/addpet',
         name: 'addpet',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route

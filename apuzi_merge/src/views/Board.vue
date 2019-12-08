@@ -1,11 +1,11 @@
 <template>
   <div id="board_page">
     <div class="board">
-        <h1> Board list</h1>
+        <h1>Board list</h1>
             <p>
         <div v-for="item in boards" v-bind:key="item.idx">
             <p></p>
-            <button @click= "get_texts(item.idx)">{{item.name}}</button>
+            <button @click= "get_texts(item.idx)" style="font-size : 16px">{{item.name}}</button>
                 <hr />
                 <!--router-link :to="{name:'board_idx', params:{idx: item.idx}}"></router-link-->
         </div>
@@ -83,12 +83,10 @@ export default {
   z-index: -1;
   background-image: url("../../public/images/main_5.jpg")
 }
-h1 {
-    margin: 30px;
-}
+
 .board {
    float: left;
-    height: 600px;
+    height: 300px;
     width: 20%;
     border: 3px solid;
     margin: auto;
@@ -98,6 +96,12 @@ h1 {
    float: left;
     height: 600px;
     width: 80%;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    display: none;
+  }
 }
 
 </style>

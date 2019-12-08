@@ -5,10 +5,11 @@
             <p></p>
             
             <div class="mypet">
-                <button>{{item.idx}}</button>
-                {{item.name}}
+                <button style="font-size : 16px">{{item.idx}}
+                {{item.p_name}}
+                </button>
                 <hr />
-                <router-link :to="{name:'addpet'}">Addpet</router-link>
+                <router-link :to="{name:'addpet'}"><b>Addpet</b></router-link>
                 <!--router-link :to="{name:'board_idx', params:{idx: item.idx}}"></router-link-->
             </div>
         </div>
@@ -24,7 +25,10 @@ export default {
     return {
       pet_list: [{
           idx:1,
-          name:"Dfdf",
+          p_name:"Dfdf",
+          p_age:'',
+          p_sex:'',
+          p_type:'',
           booking_info:[{
               booking_id:11111,
               booking_hosp:"hosp",
@@ -52,11 +56,16 @@ export default {
 
 <style scoped>
 .mypet {
-    height: 70%;
-    width: 70%;
+  float: left;
+    height: 300px;
+    width: 20%;
     border: 3px solid;
     margin: 120px 0px 30px 30px;
     padding: 40px;
 }
-
+@media (max-width: 768px) {
+  .mypet {
+    display: none;
+}
+}
 </style>

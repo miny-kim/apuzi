@@ -1,12 +1,16 @@
 <template>
   <div id="app">
     <div id="nav">
-      <span id="logo">
+      <span key="first" id="logo">
       <router-link to="/"><img id="dog" src="../public/images/logo.svg" height="72" width="62"><h1>아프지말개냥</h1></router-link>
       </span>
       <div id="menu">
         <h3>
-      <router-link to="/login">Login</router-link> |
+
+        <span v-show ="this.$store.state.role==0">
+        <router-link to="/login">Login</router-link>|</span>
+        <span v-show = "this.$store.state.role==1">
+        <button v-on:click= "logout">Logout</button> |</span>
       <router-link to="/board">Board</router-link> |
       <router-link to="/mypet">My Pet</router-link> |
       <router-link to="/map">Booking</router-link>
@@ -19,7 +23,43 @@
 </template>
 
 
+<script>
+import EventBus from "../eventBus";
 
+
+export default {
+   data() {
+    return {
+      authenticated: 0,
+    };
+  },
+
+  created(){
+     EventBus.$on('authenticated', function(text){ 
+        this.authenticated = 1;
+        console.log("authenticated..__"+this.authenticated); 
+        });
+    
+  },
+  compute(){
+    console.log("setroororo"+ this.$store.state.role);
+    console.log("너뭐야...__"+this.authenticated); 
+  },
+  methods: {
+    logout(){
+      this.$store.commit('falseRole');
+      console.log("이제 false"+this.$store.state.role)
+   this.$http.get('/logout')
+    .then((response) => {
+      console.log("ddddddsuccess");
+      this.$router.replace({name: 'home'});
+      
+    })
+    }
+  },
+  
+}
+</script>
 
 
 <style lang="scss">

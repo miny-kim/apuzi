@@ -84,10 +84,15 @@ export default {
         }
     
         for (let i = 0; i < markers.length; i++) {
-	        kakao.maps.event.addListener(markers[i], 'click', function () {
-                scope.$router.push('/map/'+i)
-    	    });
-        }   
+           kakao.maps.event.addListener(markers[i], 'click', function () {
+                scope.$router.push({
+                    name:"map_book",
+                    params:{
+                        hos:positions[i]
+                    }
+                })
+           });
+        } 
     
     
     },

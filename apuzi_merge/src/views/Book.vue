@@ -64,12 +64,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 
-.pet{
-    float: left;
-    width: 25%;
-    height: 50px;
-}
-
 .page{
   float:right;
   width: 75%;
@@ -100,5 +94,7 @@ export default {
   z-index: -1;
   background-color:rosybrown;
 }
+
+
 </style>
 
