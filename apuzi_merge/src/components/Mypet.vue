@@ -1,18 +1,17 @@
 <template>
 
-    <div >
+    <div class="mypet">
         <div v-for="item in pet_list" v-bind:key="item.idx">
             <p></p>
             
-            <div class="mypet">
+            <div>
                 <button style="font-size : 16px">{{item.idx}}
                 {{item.p_name}}
                 </button>
                 <hr />
-                <router-link :to="{name:'addpet'}"><b>Addpet</b></router-link>
-                <!--router-link :to="{name:'board_idx', params:{idx: item.idx}}"></router-link-->
             </div>
         </div>
+                <router-link :to="{name:'addpet'}"><b>Addpet</b></router-link>
     </div>
 
 </template>
@@ -45,9 +44,6 @@ export default {
       
       console.log(this.pet_list[0]);
     })
-  },
-  computed:{
-      
   }
 }
 
