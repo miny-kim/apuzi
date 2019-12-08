@@ -46,9 +46,11 @@
 <script>
 import { requestsMixin } from "../../mixins/requestsMixin";
 import * as moment from "moment";
+import mom from "moment-timezone";
+
 require('moment-timezone');
 
-moment.tz.setDefault("Asia/Seoul");
+mom.tz.setDefault("Asia/Seoul");
 export default {
   
   name: "CalendarForm",

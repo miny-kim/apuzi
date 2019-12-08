@@ -114,7 +114,7 @@ const routes = [{
 
 
 const router = new Router({
-    mode: 'history',
+  //  mode: 'history',
     base: process.env.BASE_URL,
     routes
 })
