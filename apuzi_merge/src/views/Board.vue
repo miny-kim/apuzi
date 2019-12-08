@@ -5,7 +5,7 @@
             <p>
         <div v-for="item in boards" v-bind:key="item.idx">
             <p></p>
-            <button @click= "get_texts(item.idx)">{{item.name}}</button>
+            <button @click= "get_texts(item.idx)" style="font-size : 16px">{{item.name}}</button>
                 <hr />
                 <!--router-link :to="{name:'board_idx', params:{idx: item.idx}}"></router-link-->
         </div>

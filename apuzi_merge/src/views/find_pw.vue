@@ -1,11 +1,12 @@
 <template>
 <div>
   <div class="find_pw">
-<label for="id"><b>ID</b></label>
+<label for="id"><h5><b>ID</b></h5></label>
             <p></p>
             <input type="text" v-model="id" placeholder="Enter ID" name="id" required>
-            <p></p>
-    <label for="pw"><b>Email</b></label>
+            <div class="space">
+            </div>
+    <label for="pw"><h5><b>Email</b></h5></label>
             <p></p>
             <input type="password" v-model="email" placeholder="Enter email" name="email" required>
             <p></p>
@@ -68,6 +69,9 @@ button {
     border: 2px solid green;
     border-radius: 8px;
     cursor: pointer;
+}
+.space{
+  padding: 20px 20px;
 }
 
 </style>

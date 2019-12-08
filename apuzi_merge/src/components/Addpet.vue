@@ -1,30 +1,33 @@
 <template>
     <div class = "container">
-        <label for="p_name"><p>pet Name</p></label>
-        <textarea v-model="p_name"  required="" id ="p_name"></textarea>
-        <br>
-        <input type="radio" id="female" value="female" v-model="p_sex">
+        <label for="p_name"><h5>Pet Name</h5></label>
+            <input type="text" v-model="p_name" placeholder="Enter pet name" name="p_name" required>
+            <div class="space">
+            </div>
+            <div id="select">
+            <b>sex</b> : 
+        <input type="radio" class="sex" value="female" v-model="p_sex">
         <label for="female">female</label>
-        
-        <input type="radio" id="male" value="male" v-model="p_sex">
+        <input type="radio" class="sex" value="male" v-model="p_sex">
         <label for="male">male</label>
-        <br>
-
-
-<br>
-        <input type="radio" id="dog" value="dog" v-model="p_type">
+          <div class="space">
+            </div>
+        <b>type</b> : 
+        <input type="radio" class="type" value="dog" v-model="p_type">
         <label for="dog">dog</label>
-        <input type="radio" id="cat" value="cat" v-model="p_type">
+        <input type="radio" class="type" value="cat" v-model="p_type">
         <label for="cat">cat</label>
-        <br>
-
-        <br>
-        <label for="p_age"><p>pet age</p></label>
-        <textarea v-model="p_age"  required="" id ="p_age"></textarea>
-        <br>
-        <input type="button" value="Register Pet  " v-on:click = "register">
+         <div class="space">
+            </div>
+            </div>
+        <label for="p_age"><h5>Pet age</h5></label>
+            <input type="text" v-model="p_age" placeholder="Enter pet age" name="p_age" required>
+            <div class="space">
+            </div>
+        <button type="button" v-on:click = "register"><b>Register pet</b></button>
     </div>
 </template>
+
 <script>
 export default {
   data(){
@@ -37,7 +40,11 @@ export default {
   },
   methods: {
     register : function(){
-      this.$http.post('/my_pet/addpet', 
+      console.log(this.p_name);
+      console.log(this.p_age);
+      console.log(this.p_sex);
+      console.log(this.p_type);
+      this.$http.post('/mypet/addpet', 
       {p_name:this.p_name,p_sex:this.p_sex,p_type:this.p_type,p_age:this.p_age}).then(response => {
                 console.warn(response)
                 this.result = response.data
@@ -55,6 +62,17 @@ export default {
 
 
 <style scoped>
+.container{
+    display: inline-block;
+    width: 40%;
+    height: 50%;
+    background-color:none;
+    color: black;
+    padding: 14px 20px 20px;
+    margin: 70px 0px;
+    border: 2px solid burlywood;
+    border-radius: 8px;
+}
 .container:after{
   
   content:"";
@@ -67,5 +85,46 @@ export default {
   opacity: 0.5;
   z-index: -1;
   background-image: url("../../public/images/main_5.jpg")
+}
+
+#select{
+  font-size:large;
+}
+
+input[type="radio"]+ label{
+  margin: 0px 10px 0px 5px;
+}
+
+input[type=text] {
+    width: 50%;
+    padding: 12px 10px;
+    margin: 8px 0px 0px 8px;
+    display: inline-block;
+    border: 2px solid grey;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+button:hover {
+    opacity: 0.8;
+    background-color:  rgb(167, 77, 41);
+    color: white;
+}
+
+.space{
+  padding: 20px 20px;
+}
+
+
+button {
+   display: inline-block;
+    width: 30%;
+    background-color:none;
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 10px;
+    border: 2px solid  rgb(167, 77, 41);
+    border-radius: 8px;
+    cursor: pointer;
 }
 </style>

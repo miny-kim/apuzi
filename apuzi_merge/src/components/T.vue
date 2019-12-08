@@ -158,6 +158,7 @@ methods: {
 <style scoped>
 div {
     text-align: center;
+    font-size: medium;
 }
 button{
     padding: 5px 5px 5px 5px;
@@ -196,5 +197,19 @@ button{
 }
 #head{
     padding-right: 70px;
+}
+
+button:hover {
+    opacity: 0.8;
+    background-color: grey;
+    color: white;
+}
+
+input[type=text] {
+    width: 30%;
+    padding: 12px 10px;
+    margin: 8px 0px 0px 8px;
+    display: inline-block;
+    box-sizing: border-box;
 }
 </style>

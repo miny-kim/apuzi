@@ -14,7 +14,7 @@
         <br>
         <br>
 
-        <input type="button" value="글 쓰기" v-on:click = "register">
+        <button type="button" v-on:click = "register"><b>글 쓰기</b></button>
         <br>
     </div>
 </template>
@@ -92,4 +92,21 @@ textarea{
     border-radius: 4px;
 }
 
+button:hover {
+    opacity: 0.8;
+    background-color: rgb(167, 77, 41);
+    color: white;
+}
+
+button {
+   display: inline-block;
+    width: 10%;
+    background-color:none;
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 10px;
+    border: 2px solid rgb(167, 77, 41);
+    border-radius: 8px;
+    cursor: pointer;
+}
 </style>

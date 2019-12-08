@@ -101,7 +101,7 @@ const routes = [{
         }
     },
     {
-        path: '/my_pet/addpet',
+        path: '/mypet/addpet',
         name: 'addpet',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route

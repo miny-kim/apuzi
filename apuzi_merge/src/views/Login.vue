@@ -1,16 +1,18 @@
 <template>
 <div id="login_page">
         <div class="container">
-            <label for="id"><b>ID</b></label>
+            <label for="id"><h5><b>ID</b></h5></label>
             <p></p>
             <input type="text" v-model="id" placeholder="Enter ID" name="id" required>
             <p></p>
-            <label for="pw"><b>Password</b></label>
+            <label for="pw"><h5><b>Password</b></h5></label>
             <p></p>
             <input type="password" v-model="pw" placeholder="Enter Password" name="pw" required>
             <p></p>
-            <button type="submit" v-on:click="login_button" id="login">Login</button>
-            <router-link :to = "{name:'sign_up'}"> <button type="button" class="sign_up">Sign up</button></router-link>
+            <div id="space">
+            </div>
+            <button type="submit" v-on:click="login_button" id="login"><b>Login</b></button>
+            <router-link :to = "{name:'sign_up'}"> <button type="button" class="sign_up"><b>Sign up</b></button></router-link>
             <p></p>
             <span class="psw">Forgot <router-link to="/find_pw">password</router-link>?</span>
     </div>
@@ -78,7 +80,7 @@ input[type=text],
 input[type=password] {
     width: 30%;
     padding: 12px 20px;
-    margin: 8px 0;
+    margin: 5px 5px 5px 5px;
     display: inline-block;
     border: 2px solid grey;
     box-sizing: border-box;
@@ -115,7 +117,7 @@ button:hover {
 }
 
 #space {
-    margin: 25px 50px 25px 100px;
+    margin: 50px 50px 25px 100px;
 }
 
 
