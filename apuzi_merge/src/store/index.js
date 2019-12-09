@@ -8,7 +8,7 @@ export default new Vuex.Store({
     state: {
         events: [],
         token:'',
-        role:''
+        role:-1
     },
     mutations: {
         setEvents(state, payload) {

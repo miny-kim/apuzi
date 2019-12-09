@@ -22,7 +22,6 @@
 
 
 <script>
-import EventBus from "../../eventBus";
 
 export default{
     data(){
@@ -39,7 +38,6 @@ export default{
             ).then(response => {
                 //console.warn(response)
                 if(response.data.success == true){
-                    EventBus.$emit('authenticated', 1);
                     this.$store.commit('trueRole');
                     this.$nextTick(()=>{
                     console.log("success"); 

@@ -10,7 +10,9 @@
         <span v-show ="this.$store.state.role==0">
         <router-link to="/login">Login</router-link>|</span>
         <span v-show = "this.$store.state.role==1">
-        <button v-on:click= "logout">Logout</button> |</span>
+        <button v-on:click= "logout">Logout</button> |
+        <button v-on:click= "mypage">My Info</button> |
+        </span>
       <router-link to="/board">Board</router-link> |
       <router-link to="/mypet">My Pet</router-link> |
       <router-link to="/map">Booking</router-link>
@@ -24,7 +26,6 @@
 
 
 <script>
-import EventBus from "../eventBus";
 
 
 export default {
@@ -35,11 +36,17 @@ export default {
   },
 
   created(){
-    
-     EventBus.$on('authenticated', function(text){ 
-        this.authenticated = 1;
-        console.log("authenticated..__"+this.authenticated); 
-        });
+     this.$http.get('/info')
+    .then((response) => {
+      if(response.data.id!=null){
+      this.$store.commit('trueRole');
+
+      }else{
+        
+      this.$store.commit('falseRole');
+      }
+    });
+      
     
   },
   compute(){
@@ -56,8 +63,13 @@ export default {
       this.$router.replace({name: 'home'});
       
     })
-    }
-  },
+    },
+    
+    mypage(){ // 정보 수정 페이지 
+
+      this.$router.replace({name: 'mypagee'});
+   },
+  }
   
 }
 </script>

@@ -96,6 +96,26 @@ const routes = [{
             return import ( /* webpackChunkName: "about" */ '../components/Addpet.vue')
         }
     },
+    {
+        path: '/mypage',
+        name: 'mypagee',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: function() {
+            return import ( /* webpackChunkName: "about" */ '../components/Mypage.vue')
+        }
+    },
+    {
+        path: '/mypage/modify',
+        name: 'modify',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: function() {
+            return import ( /* webpackChunkName: "about" */ '../components/Modify.vue')
+        }
+    }
 ]
 
 

@@ -14,7 +14,6 @@
 
 <script>
 // @ is an alias to /src
-import Board from '@/components/Board.vue'
 import T from '@/components/T.vue'
 
 export default {
