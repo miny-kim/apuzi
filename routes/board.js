@@ -53,7 +53,7 @@ router.post('/:idx/register', async function (req, res) {
         data.writer=req.user.nickname;
         data.view=0;
         data.like=0;
-        data.time=moment(Date.now()).tz("Asia/Seoul").format("llll");
+        data.time=moment(Date.now()).tz("Asia/Seoul").locale("ko").format("lll");
         const insertedId=await database.createListing("board"+idx,data);
         console.log("???",insertedId);
         await database.pushElementInListing(

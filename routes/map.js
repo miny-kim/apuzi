@@ -20,12 +20,18 @@ router.get("/:idx", async function (req, res) {
 });
 
 router.post("/book", async function (req, res) {
-    const data=req.body;
-    const insertedId=await database.createListing("calendars",data.calendar);
-    await database.pushElementInListing("pets",{_id:new ObjectId(data.pet_id)},{
-        calendar_list:insertedId
-    });
-    await database.pushElementInListing("hospitals",{_id:data.hospital_id},{calendars:data.calendar});
+    try{
+        const data=req.body;
+        const insertedId=await database.createListing("calendars",data.calendar);
+        await database.pushElementInListing("pets",{_id:new ObjectId(data.pet_id)},{
+            calendar_list:insertedId
+        });
+        await database.pushElementInListing("hospitals",{_id:data.hospital_id},{calendars:data.calendar});
+        res.json({success:true});
+    }
+    catch(e){
+        res.json({success:false});
+    }
 });
 
 module.exports = router;
