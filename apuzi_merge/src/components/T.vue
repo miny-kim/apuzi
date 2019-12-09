@@ -122,13 +122,13 @@ export default {
 },
 methods: {
     view(t_idx){
+        let idx = this.myindex;
         console.log("글 보여줘");   
         this.$emit('show',1);
-        let idx = this.myindex;
-        console.log("!!!!!!!!!!!!!"+t_idx);
-        eventBus.$emit('D',t_idx);
-        this.$store.commit('setIndex', t_idx);
-        //this.$router.replace()
+         this.$http.get(`/board/${idx}/text/${t_idx}`)
+          .then((response) => {
+              this.$store.commit('setData', response.data);
+       });
     },
     nextPage () {
       this.pageNum += 1;
