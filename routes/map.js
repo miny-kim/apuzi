@@ -14,8 +14,14 @@ router.get("/", async function (req, res) {
     }
 });
 
-router.get("/:idx", async function (req, res) {
-    //??    
+router.get("/user", async function (req, res) {
+    try{
+        const data=await database.findOneListing("users",{id:req.user.id});
+        res.json({address:data.address});
+    }catch(e){
+        console.error(e);
+        res.json({success:false});
+    }
     
 });
 

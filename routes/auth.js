@@ -55,7 +55,37 @@ module.exports = function (passport) {
     router.get("/info", function (req, res) {
         user=req.user;
         res.json(user);
-    })
+    });
+    
+    router.post("/forgot_pw",async function(req,res){
+        try{
+            const data=req.body;
+            const user = await database.findOneListing("users",{
+                id:data.id,
+                email:data.email
+            });
+            if(user){
+                res.json({success:true});
+            }
+        }catch(e){
+            console.error(e);
+            res.json({success:false});
+        }
+        
+    });
+
+    router.post("/update_pw",async function(req,res){
+        try{
+            const data=req.body;
+            await database.updateListing("users",{id:data.id},{
+                pw:data.pw
+            })
+            res.json({success:true});
+        }catch(e){
+            console.error(e);
+            res.json({success:false});
+        }
+    });
 
     return router;
 }
