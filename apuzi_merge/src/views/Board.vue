@@ -7,7 +7,6 @@
                 <hr />
         </div>
     </div>
-    {{show}}
       <T @show = "Detail" v-show = "!show" id="T" v-bind:myindex="myindex"></T>
       <D v-show="show">jjj</D>
   <button v-show="show" type="submit" v-on:click="back"><b>뒤로 가기</b></button>
@@ -20,7 +19,6 @@ import T from '@/components/T.vue'
 import D from '@/components/Detail.vue'
 
 export default {
-  name: 'main',
   props: ['myindex'],
   components:{
       T
