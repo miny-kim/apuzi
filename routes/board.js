@@ -50,7 +50,7 @@ router.get('/:idx/text/:t_idx',async function(req,res){
         const user = await database.findOneListing("users",{id:req.user.id});
         if(user){
             for(t_id of user.texts){
-                if(text._id==t_id){
+                if(text._id.toString()==t_id.toString()){
                     text.removable=true;
                 }
             }
