@@ -10,8 +10,8 @@
         <span v-show ="this.$store.state.role==0">
         <router-link to="/login">Login</router-link>|</span>
         <span v-show = "this.$store.state.role==1">
-        <button v-on:click= "logout">Logout</button> |
-        <button v-on:click= "mypage">My Info</button> |
+        <button v-on:click= "logout"><b>Logout</b></button> |
+        <button v-on:click= "mypage"><b>My Info</b></button> |
         </span>
       <router-link to="/board">Board</router-link> |
       <router-link to="/mypet">My Pet</router-link> |
@@ -101,6 +101,3 @@ export default {
   color: #42b983;
 }
 </style>
-
-
-

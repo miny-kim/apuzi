@@ -122,7 +122,7 @@ methods: {
        // let t_idx = this.txts.idx;
         this.$http.get(`/board/${idx}/text/${t_idx}`)
         .then((response) => {
-            this.texts = response.data;
+            this.texts = response.data.text;
             })
         //글보여주기 기능 구현
     },
@@ -130,6 +130,7 @@ methods: {
       this.pageNum += 1;
       let idx = this.myindex;
        let p_id= this.pageNum+1;
+       console.log("글 목록 불러와");
        this.$http.get(`/board/${idx}/${p_id}`)
     .then((response) => {
       this.texts = response.data.text;
@@ -142,6 +143,7 @@ methods: {
       this.pageNum -= 1;
       let idx = this.myindex;
        let p_id= this.pageNum+1;
+       console.log("글 목록 불러와");
        this.$http.get(`/board/${idx}/${p_id}`)
     .then((response) => {
       this.texts = response.data.text;

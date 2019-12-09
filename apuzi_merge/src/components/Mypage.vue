@@ -1,10 +1,10 @@
 <template>
 <div>
   <div class="check_pw">
-  <h1>Please Enter Password</h1>
-<label for="id"><h5><b>password</b></h5></label>
-            <p></p>
-            <input type="text" v-model="pw" placeholder="Enter Password" name="pw" required>
+  <b>Please Enter Password</b>
+  <br>
+  <br>
+  <input type="password" id="pw" v-model="pw" placeholder="Enter Password" name="pw" required>
   </div>
   <p></p>
   <button type="submit" v-on:click="check_button"><b>Check</b></button>
@@ -28,7 +28,7 @@ export default {
             ).then(response => {
                 if(response.data.success == true){
                     console.log("success"); 
-                    this.$router.push({name: 'modify'});
+                    this.$router.replace({name: 'modify'});
                     }
                     else{
                         alert("password error");
