@@ -6,15 +6,6 @@ var momentTimezone=require("moment-timezone");
 
 router.get('/', async function (req, res) {
     try {
-        /*let collections = await database.listCollections();
-        let boards=[];
-        collections.forEach(collection=>{
-            if(collection.name.includes("board")){
-                if(collection.name!=="boardName"){
-                    boards.push(collection);
-                }
-            }
-        });*/
         const names=await database.findMultipleListings("boardName");
         names.forEach(name=>{
             delete name._id;
@@ -25,16 +16,46 @@ router.get('/', async function (req, res) {
         res.json({ success: false });
     }
 });
+
+router.post("/:idx/remove/:t_idx",async function (req,res){
+    const params=req.params;
+    try{
+        const text=await database.findOneListing("board"+params.idx,{idx:params.t_idx});
+        await database.deleteListing("board"+params.idx,{idx:params.t_idx});
+        let users=await database.findMultipleListings("board"+params.idx);
+        for(user of users){
+            await database.pullElementInListing("users",{
+                id:req.user.id
+            },{
+                texts:text._id
+            });
+        }
+    }catch(e){
+        console.error(e);
+        res.json({success:false});
+    }
+})
+
 router.get('/:idx/text/:t_idx',async function(req,res){
     try{
         let text=await database.findOneListing("board"+req.params.idx,{
             idx:Number.parseInt(req.params.t_idx)
         });
+        text.removable=false;
         await database.upsertListing("board"+req.params.idx,{
             idx:Number.parseInt(req.params.t_idx)
         },{
             view:++text.view
         })
+        const user = await database.findOneListing("users",{id:req.user.id});
+        if(user){
+            for(t_id of user.texts){
+                if(text._id==t_id){
+                    text.removable=true;
+                }
+            }
+        }
+        console.log(text);
         res.json(text);   
     }catch(e){
         res.json({success:false});
