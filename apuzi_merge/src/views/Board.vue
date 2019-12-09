@@ -6,10 +6,14 @@
             <button @click= "get_texts(item.idx)" style="font-size : 16px">{{item.name}}</button>
                 <hr />
         </div>
+        
     </div>
+   
       <T @show = "Detail" v-show = "!show" id="T" v-bind:myindex="myindex"></T>
-      <D v-show="show">jjj</D>
-  <button v-show="show" type="submit" v-on:click="back"><b>뒤로 가기</b></button>
+      <D v-bind:myindex="myindex" id="D" v-show="show"></D>
+      <button id="del" v-show="show&&role" type="submit" v-on:click="del"><b>삭제</b></button>
+       <button id="back" v-show="show" type="submit" v-on:click="back"><b>뒤로 가기</b></button>
+    
   </div>
 </template>
 
@@ -19,6 +23,7 @@ import T from '@/components/T.vue'
 import D from '@/components/Detail.vue'
 
 export default {
+  name: 'main',
   props: ['myindex'],
   components:{
       T
@@ -29,6 +34,7 @@ export default {
       myindex: '1',
       board_length: '0',
       show:0,
+      role:1,
       boards: [{
       }],
       selected:"",
@@ -58,6 +64,10 @@ export default {
     back: function(){
       console.log("T...");
       this.show = 0;
+    },
+    del: function(){
+      consloe.log("del");
+
     }
   },
 
@@ -99,4 +109,47 @@ export default {
     width: 80%;
 }
 
+#D{
+   float: left;
+    height: 500px;
+    width: 80%;
+}
+
+#back:hover {
+    opacity: 0.8;
+    background-color: rgb(167, 77, 41);
+    color: white;
+}
+
+#back {
+  float:right;
+   display: inline-block;;
+    width: 8%;
+    background-color:none;
+    color: black;
+    padding: 5px 5px;
+    margin: 8px 10px;
+    border: 2px solid rgb(167, 77, 41);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#del:hover {
+    opacity: 0.8;
+    background-color: red;
+    color: white;
+}
+
+#del {
+  float:right;
+   display: inline-block;;
+    width: 8%;
+    background-color:none;
+    color: black;
+    padding: 5px 5px;
+    margin: 8px 10px;
+    border: 2px solid red;
+    border-radius: 8px;
+    cursor: pointer;
+}
 </style>
