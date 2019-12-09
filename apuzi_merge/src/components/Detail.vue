@@ -23,18 +23,19 @@ export default {
     return {
       image : null,
       title:'aa',
-      contents:'peqwor4851u03249jfalw'
-
+      contents:'peqwor4851u03249jfalw',
+      view:'4',
     }
   },
      created () {
-    /*this.$http.get('')
+    this.$http.get(`/board/${idx}/text/${t_idx}`)
     .then((response) => {
       this.title = response.data.title;
       this.contents = response.data.contents;
       this.image = response.data.image;
+      this.view = response.data.view;
       
-    });*/
+    });
 
   },
     
@@ -62,7 +63,7 @@ export default {
 
 #contents{ 
     width: 80%;
-    height: 30%;
+    height: 60%;
     display: block;
   margin-left: auto;
   margin-right: auto;

@@ -120,10 +120,7 @@ methods: {
         let idx = this.myindex;
         console.log("!!!!!!!!!!!!!"+t_idx);
        // let t_idx = this.txts.idx;
-        this.$http.get(`/board/${idx}/text/${t_idx}`)
-        .then((response) => {
-            this.texts = response.data;
-            })
+       
         //글보여주기 기능 구현
     },
     nextPage () {

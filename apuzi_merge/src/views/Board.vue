@@ -11,6 +11,7 @@
    
       <T @show = "Detail" v-show = "!show" id="T" v-bind:myindex="myindex"></T>
       <D id="D" v-show="show"></D>
+      <button id="del" v-show="show&&role" type="submit" v-on:click="del"><b>삭제</b></button>
        <button id="back" v-show="show" type="submit" v-on:click="back"><b>뒤로 가기</b></button>
     
   </div>
@@ -33,6 +34,7 @@ export default {
       myindex: '1',
       board_length: '0',
       show:0,
+      role:1,
       boards: [{
       }],
       selected:"",
@@ -62,6 +64,10 @@ export default {
     back: function(){
       console.log("T...");
       this.show = 0;
+    },
+    del: function(){
+      consloe.log("del");
+
     }
   },
 
@@ -105,7 +111,7 @@ export default {
 
 #D{
    float: left;
-    height: 600px;
+    height: 500px;
     width: 80%;
 }
 
@@ -116,13 +122,33 @@ export default {
 }
 
 #back {
-   display: inline-block;
-    width: 10%;
+  float:right;
+   display: inline-block;;
+    width: 8%;
     background-color:none;
     color: black;
-    padding: 14px 20px;
+    padding: 5px 5px;
     margin: 8px 10px;
     border: 2px solid rgb(167, 77, 41);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#del:hover {
+    opacity: 0.8;
+    background-color: red;
+    color: white;
+}
+
+#del {
+  float:right;
+   display: inline-block;;
+    width: 8%;
+    background-color:none;
+    color: black;
+    padding: 5px 5px;
+    margin: 8px 10px;
+    border: 2px solid red;
     border-radius: 8px;
     cursor: pointer;
 }

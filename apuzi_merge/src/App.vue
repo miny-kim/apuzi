@@ -8,7 +8,7 @@
         <h3>
 
         <span v-show ="this.$store.state.role==0">
-        <router-link to="/login">Login</router-link>|</span>
+        <router-link to="/login">Login</router-link> | </span>
         <span v-show = "this.$store.state.role==1">
         <button v-on:click= "logout"><b>Logout</b></button> |
         <button v-on:click= "mypage"><b>My Info</b></button> |
