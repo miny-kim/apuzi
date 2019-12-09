@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var database = require("../lib/database");
-var path=require('path');
 
 router.post("/mypage",async function(req,res){
     try{
@@ -36,3 +35,5 @@ router.post("/mypage/modify",async function(req,res){
         res.json({success:false});
     }
 });
+
+module.exports=router;
