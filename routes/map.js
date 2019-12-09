@@ -29,6 +29,7 @@ router.post("/book", async function (req, res) {
     try{
         const data=req.body;
         const insertedId=await database.createListing("calendars",data.calendar);
+        await database.upsertListing("calendars",{_id:insertedId},{id:insertedId});
         await database.pushElementInListing("pets",{_id:new ObjectId(data.pet_id)},{
             calendar_list:insertedId
         });
