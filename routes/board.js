@@ -47,7 +47,6 @@ router.post('/:idx/register', async function (req, res) {
         let idx=Number.parseInt(req.params.idx);
         let temp=await database.findOneListing("boardName",{idx:idx});
         let number=temp.number;
-        console.log("po",idx);
         await database.upsertListing("boardName",{idx:idx},{number:number+1});
         data.idx=number;
         data.writer=req.user.nickname;
@@ -55,7 +54,8 @@ router.post('/:idx/register', async function (req, res) {
         data.like=0;
         data.time=moment(Date.now()).tz("Asia/Seoul").locale("ko").format("lll");
         const insertedId=await database.createListing("board"+idx,data);
-        console.log("???",insertedId);
+        console.log(data);
+        console.log(data.img);
         await database.pushElementInListing(
             "users",{id:req.user.id},{texts:insertedId}
         );
