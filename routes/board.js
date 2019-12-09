@@ -20,8 +20,8 @@ router.get('/', async function (req, res) {
 router.get("/:idx/remove/:t_idx",async function (req,res){
     const params=req.params;
     try{
-        const text=await database.findOneListing("board"+params.idx,{idx:params.t_idx});
-        await database.deleteListing("board"+params.idx,{idx:params.t_idx});
+        const text=await database.findOneListing("board"+params.idx,{idx:Number.parseInt(params.t_idx)});
+        await database.deleteListing("board"+params.idx,{idx:Number.parseInt(params.t_idx)});
         let users=await database.findMultipleListings("board"+params.idx);
         for(user of users){
             await database.pullElementInListing("users",{
