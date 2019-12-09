@@ -1,14 +1,20 @@
 <template>
   <div id="app">
     <div id="nav">
-      <span id="logo">
+      <span key="first" id="logo">
       <router-link to="/"><img id="dog" src="../public/images/logo.svg" height="72" width="62"><h1>아프지말개냥</h1></router-link>
       </span>
       <div id="menu">
         <h3>
-      <router-link to="/login">Login</router-link> | 
-      <router-link to="/board">Board</router-link> | 
-      <router-link to="/mypet">My Pet</router-link> | 
+
+        <span v-show ="this.$store.state.role==0">
+        <router-link to="/login">Login</router-link>|</span>
+        <span v-show = "this.$store.state.role==1">
+        <button v-on:click= "logout"><b>Logout</b></button> |
+        <button v-on:click= "mypage"><b>My Info</b></button> |
+        </span>
+      <router-link to="/board">Board</router-link> |
+      <router-link to="/mypet">My Pet</router-link> |
       <router-link to="/map">Booking</router-link>
       <p></p>
         </h3>
@@ -19,7 +25,54 @@
 </template>
 
 
+<script>
 
+
+export default {
+   data() {
+    return {
+      authenticated: 0,
+    };
+  },
+
+  created(){
+     this.$http.get('/info')
+    .then((response) => {
+      if(response.data.id!=null){
+      this.$store.commit('trueRole');
+
+      }else{
+        
+      this.$store.commit('falseRole');
+      }
+    });
+      
+    
+  },
+  compute(){
+    console.log("setroororo"+ this.$store.state.role);
+    console.log("너뭐야...__"+this.authenticated); 
+  },
+  methods: {
+    logout(){
+      this.$store.commit('falseRole');
+      console.log("이제 false"+this.$store.state.role)
+   this.$http.get('/logout')
+    .then((response) => {
+      console.log("ddddddsuccess");
+      this.$router.replace({name: 'home'});
+      
+    })
+    },
+    
+    mypage(){ // 정보 수정 페이지 
+
+      this.$router.replace({name: 'mypagee'});
+   },
+  }
+  
+}
+</script>
 
 
 <style lang="scss">
@@ -47,15 +100,6 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
-
-@media(max-width : 768px)
-{
-  #menu{
-  font-size: smaller;
-  text-align: center;
-}
-}
-
 </style>
 
 

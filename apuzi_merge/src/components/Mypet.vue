@@ -21,18 +21,7 @@ export default {
   name: 'Mypet',
   data () {
     return {
-      pet_list: [{
-          idx:1,
-          p_name:"Dfdf",
-          p_age:'',
-          p_sex:'',
-          p_type:'',
-          booking_info:[{
-              booking_id:11111,
-              booking_hosp:"hosp",
-              booking_time:11111
-          }]
-      }],
+      pet_list: [],
       selected:"",
     }
   },

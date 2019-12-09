@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class = "container">
   <div class="find_pw">
 <label for="id"><h5><b>ID</b></h5></label>
             <p></p>

@@ -36,11 +36,17 @@ export default{
       console.log(this.pw);
       this.$http.post('/login', { id: this.id, pw : this.pw}
             ).then(response => {
-                console.warn(response)
+                //console.warn(response)
                 if(response.data.success == true){
+                    this.$store.commit('trueRole');
+                    this.$nextTick(()=>{
                     console.log("success"); 
                     this.$router.push({name: 'board'});
-                    }  
+                    })
+                    }
+                else{
+                    alert("Login error, Try agian");
+                }
             }).catch((ex) => {
                 console.warn("ERROR!!!!! : ",ex)
             });

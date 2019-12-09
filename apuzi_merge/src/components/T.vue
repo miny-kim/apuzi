@@ -28,7 +28,7 @@
                 <tbody id="contents">
                     <tr v-for="item in filtered" v-bind:key="item.idx">
                         <td>{{item.idx}}</td>
-                        <td>{{item.title}}</td>
+                        <td id="only" v-on:click = "view(item.idx)">{{item.title}}</td>
                         <td>{{item.writer}}</td>
                         <td class="col_1">{{item.time}}</td>
                         <td class="col_1">{{item.view}}</td>
@@ -59,27 +59,10 @@ export default {
         myindex:1,
         pageNum: 0,
         pageCount:0,
-        text_length:100,
+        text_length:0,
         text_name: '',
         array_text: '',
-      textss: [{
-          idx:1,
-          title:"1111",
-          contents: "",
-          img:"",
-          writer:"miny",
-          time:"09",
-          view:1, 
-      },
-      {
-          idx:2,
-          title:"ss",
-          contents: "",
-          img:"",
-          writer:"miny",
-          time:"09",
-          view:1, 
-      }],
+      texts: [],
       selected:"title",
     }
   },
@@ -88,31 +71,31 @@ export default {
    let p_id = 1;
     this.$http.get(`/board/${idx}/${p_id}`)
     .then((response) => {
-      this.textss = response.data.text;
+      this.texts = response.data.text;
      this.text_length =response.data.text_length;
-      console.log(this.textss[0]);
-    })
-        console.log("sssssss"+this.myindex);
+      console.log("게시판 글 수는!!"+this.text_length);
         let page = Math.floor(this.text_length / 10);
         if (this.text_length  % 10 > 0) page += 1;
         this.pageCount = page;
+      console.log("page____num"+this.pageNum);
+    })
   },
   computed:{
       filtered(){
             let name = this.text_name;
             console.log(name);
             if (this.selected == "title") {
-                return this.textss.filter(txt => {
+                return this.texts.filter(txt => {
                     return txt.title.includes(name);
                 });
             } 
             else {
-                return this.textss.filter(txt => {
+                return this.texts.filter(txt => {
                     return txt.title.includes(name);
                 });
             }
 
-            return this.textss;
+            return this.texts;
 
         },
        
@@ -121,31 +104,50 @@ export default {
     myindex: function(){
         console.log("sssssss"+this.myindex);
         let idx = this.myindex;
-        let p_id= 1;
-        this.$http.get(`/board/${idx}/${p_id}`)
+        this.$http.get(`/board/${idx}/1`)
         .then((response) => {
-            this.textss = response.data;
-            console.log(this.textss[0]);
+            this.texts = response.data.text;
+            this.text_length =response.data.text_length;
+      console.log("게시판 글 수는!!"+this.text_length);
             })
       
-  },
-  pageNum: function(){
-      console.log(this.pageNum+"DDD"+this.myindex);
-       let idx = this.myindex;
-    let p_id= this.pageNum;
-    this.$http.get(`/board/${idx}/${p_id}`)
-    .then((response) => {
-      this.textss = response.data;
-      console.log(this.textss[0]);
-    })
   }
 },
 methods: {
-       nextPage () {
+    view(t_idx){
+        console.log("글 보여줘");
+        this.$emit('show',1);
+        let idx = this.myindex;
+        console.log("!!!!!!!!!!!!!"+t_idx);
+       // let t_idx = this.txts.idx;
+        this.$http.get(`/board/${idx}/text/${t_idx}`)
+        .then((response) => {
+            this.texts = response.data;
+            })
+        //글보여주기 기능 구현
+    },
+    nextPage () {
       this.pageNum += 1;
+      let idx = this.myindex;
+       let p_id= this.pageNum+1;
+       this.$http.get(`/board/${idx}/${p_id}`)
+    .then((response) => {
+      this.texts = response.data.text;
+     this.text_length =response.data.text_length;
+      console.log("next page"+p_id);
+    })
+
     },
     prevPage () {
       this.pageNum -= 1;
+      let idx = this.myindex;
+       let p_id= this.pageNum+1;
+       this.$http.get(`/board/${idx}/${p_id}`)
+    .then((response) => {
+      this.texts = response.data.text;
+     this.text_length =response.data.text_length;
+      console.log("prev page"+p_id);
+    })
     }
 },
 }
@@ -154,7 +156,7 @@ methods: {
 <style scoped>
 div {
     text-align: center;
-    font-size: medium;
+    font-size: small;
 }
 button{
     padding: 5px 5px 5px 5px;
@@ -167,10 +169,11 @@ button{
     text-align: center;
     border-collapse: collapse;
     border-bottom: 1px solid #ddd;
-    padding: 20px;
+    color: black;
+    padding: 13px;
 }
 
-#text tr td:hover {
+#text tr td#only:hover {
     background-color: #f5f5f5;
 }
 
@@ -206,7 +209,6 @@ input[type=text] {
     padding: 12px 10px;
     margin: 8px 0px 0px 8px;
     display: inline-block;
-    box-sizing: border-box;
 }
 
 @media (max-width: 768px) {

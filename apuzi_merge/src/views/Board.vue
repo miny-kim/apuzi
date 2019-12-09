@@ -1,43 +1,39 @@
 <template>
   <div id="board_page">
     <div class="board">
-        <h1>Board list</h1>
-            <p>
         <div v-for="item in boards" v-bind:key="item.idx">
             <p></p>
             <button @click= "get_texts(item.idx)" style="font-size : 16px">{{item.name}}</button>
                 <hr />
-                <!--router-link :to="{name:'board_idx', params:{idx: item.idx}}"></router-link-->
         </div>
+        
     </div>
-      
-      <T id="T" v-bind:myindex="myindex"></T>
+   
+      <T @show = "Detail" v-show = "!show" id="T" v-bind:myindex="myindex"></T>
+      <D id="D" v-show="show"></D>
+       <button id="back" v-show="show" type="submit" v-on:click="back"><b>뒤로 가기</b></button>
+    
   </div>
 </template>
 
 
 <script>
-// @ is an alias to /src
-import Board from '@/components/Board.vue'
 import T from '@/components/T.vue'
+import D from '@/components/Detail.vue'
 
 export default {
   name: 'main',
   props: ['myindex'],
   components:{
       T
+      ,D
   },
   data () {
     return {
       myindex: '1',
       board_length: '0',
+      show:0,
       boards: [{
-          name:"Food",
-          idx:1
-      },
-      {
-          name:"ddd",
-          idx:2
       }],
       selected:"",
     }
@@ -49,7 +45,8 @@ export default {
     .then((response) => {
       this.boards = response.data;
       
-    })
+    });
+
   },
  methods: {
     get_texts: function(idx){
@@ -57,8 +54,16 @@ export default {
     console.log("BB"+this.board_length);
     console.log("P"+this.myindex);
     },
-  },
+    Detail: function(){
+      console.log("Detail...");
+      this.show = 1;
+    },
 
+    back: function(){
+      console.log("T...");
+      this.show = 0;
+    }
+  },
 
 }
 
@@ -98,10 +103,27 @@ export default {
     width: 80%;
 }
 
-@media (max-width: 768px) {
-  h1 {
-    display: none;
-  }
+#D{
+   float: left;
+    height: 600px;
+    width: 80%;
 }
 
+#back:hover {
+    opacity: 0.8;
+    background-color: rgb(167, 77, 41);
+    color: white;
+}
+
+#back {
+   display: inline-block;
+    width: 10%;
+    background-color:none;
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 10px;
+    border: 2px solid rgb(167, 77, 41);
+    border-radius: 8px;
+    cursor: pointer;
+}
 </style>

@@ -33,38 +33,26 @@ export default {
         var markers = [];
         const scope = this
 
-        //동물병원
-	    var positions = [
-    	    {
-        	    title: '공감플러스 동물의료센터',
-        	    latlng: new kakao.maps.LatLng(37.273885, 127.047829)
-	    	},
-		
-        	{
-	            title: '수원종합동물병원',
-         	    latlng: new kakao.maps.LatLng(37.274693, 127.044837)
-	    	},
-		
-        	{
-            	title: '돌봄동물병원',
-	            latlng: new kakao.maps.LatLng(37.274643, 127.043125)
-	    	},
-		
-	        {
-        	    title: '오아시스 정형외과 신경외과 동물병원',
-        	    latlng: new kakao.maps.LatLng(37.291713, 127.047749)
-            },
-            {
-        	    title: '우리학교',
-        	    latlng: new kakao.maps.LatLng(37.282977, 127.046390)
-		    },
-        ];
         
         // 마커 이미지의 이미지 주소입니다
 	    var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 
-	    
-    	for (var i = 0; i < positions.length; i++) {
+        this.$http.get('/map').then((result)=>{
+            data=result.data
+            console.log(result.data)
+            console.log(data)
+            for(let i=0;i<data.length;i++){
+                let hospital=new Object();
+                hospital._id=data[i]._id;
+                hospital.title=data[i].title;
+                hospital.latlng=new kakao.maps.LatLng(data[i].lat,data[i].lng)
+
+                positions.push(hospital)
+            }
+
+            console.log(positions)
+
+            for (var i = 0; i < positions.length; i++) {
 
     	    // 마커 이미지의 이미지 크기 입니다
     	    var imageSize = new kakao.maps.Size(24, 35);
@@ -82,7 +70,7 @@ export default {
 
     	    markers.push(marker)
         }
-    
+
         for (let i = 0; i < markers.length; i++) {
            kakao.maps.event.addListener(markers[i], 'click', function () {
                 scope.$router.push({
@@ -92,7 +80,8 @@ export default {
                     }
                 })
            });
-        } 
+        }
+        })
     
     
     },
