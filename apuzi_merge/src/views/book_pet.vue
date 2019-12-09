@@ -234,9 +234,9 @@
 <script>
   const scope=this;
   var pet_inform = new Array();
-  
   export default {
-    data: () => ({
+    data () {
+      return{
       reserve: {
         pet: null,
         title:null,
@@ -247,9 +247,8 @@
       dialog: false,
       pets: [],
       times:["09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00"],
-    }),
-
-
+    }
+    },
     created() {
         this.$http.get('/mypet').then((result)=>{
           console.log(result.data)
@@ -261,6 +260,7 @@
         })
 
     },
+
     methods:{
     
     booking:function(){
