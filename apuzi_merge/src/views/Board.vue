@@ -7,14 +7,15 @@
                 <hr />
         </div>
     </div>
-      
-      <T id="T" v-bind:myindex="myindex"></T>
+    {{show}}
+      <T @show = "Detail" v-show = "!show" id="T" v-bind:myindex="myindex"></T>
+      <D v-show="show">jjj</D>
+  <button v-show="show" type="submit" v-on:click="back"><b>뒤로 가기</b></button>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Board from '@/components/Board.vue'
 import T from '@/components/T.vue'
 
 export default {
