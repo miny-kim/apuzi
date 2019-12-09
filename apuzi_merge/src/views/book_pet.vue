@@ -232,6 +232,9 @@
 </template>
 
 <script>
+  const scope=this;
+  var pet_inform = new Array();
+  
   export default {
     data: () => ({
       reserve: {

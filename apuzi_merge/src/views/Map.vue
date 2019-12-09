@@ -31,7 +31,9 @@ export default {
         var map = new kakao.maps.Map(container, options);
         this.map=map;
         var markers = [];
-        const scope = this
+        const scope = this;
+        var positions=new Array();
+        var data=new Array()
 
         
         // 마커 이미지의 이미지 주소입니다
