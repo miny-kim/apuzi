@@ -71,7 +71,6 @@ export default {
    let idx = 1;
    let p_id = 1;
    this.pageNum =0;
-   this.$store.commit('trueRole');
     this.$http.get(`/board/${idx}/${p_id}`)
     .then((response) => {
       this.texts = response.data.text;
