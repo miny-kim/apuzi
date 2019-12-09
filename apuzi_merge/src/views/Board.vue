@@ -14,21 +14,25 @@
   </div>
 </template>
 
+
 <script>
-// @ is an alias to /src
 import T from '@/components/T.vue'
+import D from '@/components/Detail.vue'
 
 export default {
   name: 'main',
   props: ['myindex'],
   components:{
       T
+      ,D
   },
   data () {
     return {
       myindex: '1',
       board_length: '0',
-      boards: [],
+      show:0,
+      boards: [{
+      }],
       selected:"",
     }
   },
@@ -39,7 +43,8 @@ export default {
     .then((response) => {
       this.boards = response.data;
       
-    })
+    });
+
   },
  methods: {
     get_texts: function(idx){
@@ -47,8 +52,16 @@ export default {
     console.log("BB"+this.board_length);
     console.log("P"+this.myindex);
     },
-  },
+    Detail: function(){
+      console.log("Detail...");
+      this.show = 1;
+    },
 
+    back: function(){
+      console.log("T...");
+      this.show = 0;
+    }
+  },
 
 }
 
@@ -86,12 +99,6 @@ export default {
    float: left;
     height: 600px;
     width: 80%;
-}
-
-@media (max-width: 768px) {
-  h1 {
-    display: none;
-  }
 }
 
 </style>

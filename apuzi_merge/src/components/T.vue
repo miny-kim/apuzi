@@ -27,8 +27,8 @@
             </thead>
                 <tbody id="contents">
                     <tr v-for="item in filtered" v-bind:key="item.idx">
-                        <td v-on:click = "view">{{item.idx}}</td>
-                        <td>{{item.title}}</td>
+                        <td>{{item.idx}}</td>
+                        <td id="only" v-on:click = "view(item.idx)">{{item.title}}</td>
                         <td>{{item.writer}}</td>
                         <td class="col_1">{{item.time}}</td>
                         <td class="col_1">{{item.view}}</td>
@@ -48,6 +48,7 @@
         </div>
   </div>
 </template>
+
 
 <script>
 export default {
@@ -113,8 +114,16 @@ export default {
   }
 },
 methods: {
-    view(){
+    view(t_idx){
         console.log("글 보여줘");
+        this.$emit('show',1);
+        let idx = this.myindex;
+        console.log("!!!!!!!!!!!!!"+t_idx);
+       // let t_idx = this.txts.idx;
+        this.$http.get(`/board/${idx}/text/${t_idx}`)
+        .then((response) => {
+            this.texts = response.data;
+            })
         //글보여주기 기능 구현
     },
     nextPage () {
@@ -143,6 +152,7 @@ methods: {
 },
 }
 </script>
+
 <style scoped>
 div {
     text-align: center;
@@ -163,7 +173,7 @@ button{
     padding: 13px;
 }
 
-#text tr td:hover {
+#text tr td#only:hover {
     background-color: #f5f5f5;
 }
 
