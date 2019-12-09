@@ -70,6 +70,7 @@ export default {
    created () { //초기에는 무조건 첫번째 게시판의 1페이지
    let idx = 1;
    let p_id = 1;
+   this.pageNum =0;
     this.$http.get(`/board/${idx}/${p_id}`)
     .then((response) => {
       this.texts = response.data.text;
@@ -105,6 +106,7 @@ export default {
     myindex: function(){
         console.log("sssssss"+this.myindex);
         let idx = this.myindex;
+        this.pageNum =0;
         this.$http.get(`/board/${idx}/1`)
         .then((response) => {
             this.texts = response.data.text;
