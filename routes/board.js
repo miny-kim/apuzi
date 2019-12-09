@@ -17,7 +17,7 @@ router.get('/', async function (req, res) {
     }
 });
 
-router.post("/:idx/remove/:t_idx",async function (req,res){
+router.get("/:idx/remove/:t_idx",async function (req,res){
     const params=req.params;
     try{
         const text=await database.findOneListing("board"+params.idx,{idx:params.t_idx});
