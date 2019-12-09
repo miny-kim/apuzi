@@ -51,6 +51,7 @@
 
 
 <script>
+import eventBus from '../../eventBus.js'
 export default {
   name: 'T',
   props: ['myindex'],
@@ -69,6 +70,8 @@ export default {
    created () { //초기에는 무조건 첫번째 게시판의 1페이지
    let idx = 1;
    let p_id = 1;
+   this.pageNum =0;
+   this.$store.commit('trueRole');
     this.$http.get(`/board/${idx}/${p_id}`)
     .then((response) => {
       this.texts = response.data.text;
@@ -104,10 +107,14 @@ export default {
     myindex: function(){
         console.log("sssssss"+this.myindex);
         let idx = this.myindex;
+        this.pageNum =0;
         this.$http.get(`/board/${idx}/1`)
         .then((response) => {
             this.texts = response.data.text;
             this.text_length =response.data.text_length;
+            let page = Math.floor(this.text_length / 10);
+            if (this.text_length  % 10 > 0) page += 1;
+            this.pageCount = page;
       console.log("게시판 글 수는!!"+this.text_length);
             })
       
@@ -115,13 +122,13 @@ export default {
 },
 methods: {
     view(t_idx){
-        console.log("글 보여줘");
-        this.$emit('show',1);
         let idx = this.myindex;
-        console.log("!!!!!!!!!!!!!"+t_idx);
-       // let t_idx = this.txts.idx;
-       
-        //글보여주기 기능 구현
+        console.log("글 보여줘");   
+        this.$emit('show',1);
+         this.$http.get(`/board/${idx}/text/${t_idx}`)
+          .then((response) => {
+              this.$store.commit('setData', response.data);
+       });
     },
     nextPage () {
       this.pageNum += 1;
@@ -143,6 +150,7 @@ methods: {
     .then((response) => {
       this.texts = response.data.text;
      this.text_length =response.data.text_length;
+     
       console.log("prev page"+p_id);
     })
     }

@@ -7,18 +7,22 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         events: [],
-        token:'',
-        role:''
+        token: '',
+        role: '',
+        data: [],
     },
     mutations: {
         setEvents(state, payload) {
             state.events = payload;
         },
-        trueRole(state){
-            state.role =true;
+        trueRole(state) {
+            state.role = true;
         },
-        falseRole(state){
-            state.role =false;
+        falseRole(state) {
+            state.role = false;
+        },
+        setData(state, payload) {
+            state.data = payload;
         }
     },
     actions: {}

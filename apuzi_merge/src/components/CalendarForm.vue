@@ -81,8 +81,8 @@ export default {
       }
       moment.tz.setDefault("Asia/Seoul");
       console.log(moment().format('YYYY-MM-DD HH:mm:ss'));
-      this.form.start  = moment(this.form.start,'YYYY-MM-DD[T]kk:mm:ss A').add(9, 'k').format();
-      this.form.end  = moment(this.form.end,'YYYY-MM-DD[T]kk:mm:ss A').format();
+      this.form.start  = moment(this.form.start, 'YYYY-MM-DD[T]kk:mm:ss A').format();
+      this.form.end  = moment(this.form.end, 'YYYY-MM-DD[T]kk:mm:ss A').format();
 
       if (this.edit) {
         await this.editCalendar(this.form);
