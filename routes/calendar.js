@@ -19,14 +19,17 @@ router.get('/',async function (req,res){
         }
         if(user.pet_list){
             for(pet_id of user.pet_list){
+                console.log("hi");
                 let pet=await database.findOneListing("pets",{_id:pet_id});
-                let cal=await database.findOneListing("calendars",{_id:pet._id});
-                if(cal){
-                    cal.start=moment(cal.start).tz("Asia/Seoul").format();
-                    cal.end=moment(cal.end).tz("Asia/Seoul").format();
-                    calendarList.push(cal);
-    
+                for(cal_id of pet.calendar_list){
+                    let cal=await database.findOneListing("calendars",{_id:cal_id});
+                    if(cal){
+                        cal.start=moment(cal.start).tz("Asia/Seoul").format();
+                        cal.end=moment(cal.end).tz("Asia/Seoul").format();
+                        calendarList.push(cal);
+                    }
                 }
+    
             }
         }
         console.log(calendarList);
