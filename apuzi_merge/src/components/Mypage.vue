@@ -28,7 +28,7 @@ export default {
             ).then(response => {
                 if(response.data.success == true){
                     console.log("success"); 
-                    this.$router.push({name: '/modify'});
+                    this.$router.push({name: 'modify'});
                     }
                     else{
                         alert("password error");

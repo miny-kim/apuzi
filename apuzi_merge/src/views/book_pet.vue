@@ -242,28 +242,50 @@
       },
       date:null,
       dialog: false,
-      pets: ['dog','cat','bird','rabbit'],
+      pets: [],
       times:["09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00"],
     }),
 
+
+    created() {
+        this.$http.get('/mypet').then((result)=>{
+          console.log(result.data)
+          pet_inform=result.data;
+
+        for(let i=0;i<pet_inform.length;i++){
+          this.pets[i]=pet_inform[i].p_name
+        }
+        })
+
+    },
     methods:{
     
     booking:function(){
+        let i=0;
+        for(i=0;i<pet_inform.length;i++){
+          if(pet_inform[i].p_name==this.reserve.pet)
+            break;
+        }
         console.log(this.reserve.date)
         console.log(this.reserve.time)
         console.log(this.reserve.pet)
+        console.log(pet_inform[i]._id)
         
         let title=this.$route.params.hos.title+"에서 "+this.reserve.title
         console.log(title)
-        
-        this.$http.post('./map/book',{
+        let start=this.reserve.date+"T"+this.reserve.time+":00.000Z"
+        let end=this.reserve.date+"T"+this.reserve.time.substr(0,2)+":59:00.000Z"
+        console.log(start)
+        console.log(end)
+
+        this.$http.post('/map/book',{
             calendar:{
-                start:this.reserve.date,
-                end:this.reserve.date,
+                start:start,
+                end:end,
                 title:title,
             },
-            hospital:this.$route.params.hos.title,
-            pet:this.reserve.pet
+            hospital_id:this.$route.params.hos._id,
+            pet_id:pet_inform[i]._id,
             
         })
 
