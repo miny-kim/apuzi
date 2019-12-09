@@ -6,9 +6,12 @@ router.get('/', async function (req, res, next) {
     try {
         const user = await database.findOneListing("users", { id: req.user.id });
         let petList = [];
-        for(const _id of user.pet_list){
-            const pet = await database.findOneListing("pets", { _id: _id });
-            petList.push(pet);
+        if(user.pet_list){
+            for(const _id of user.pet_list){
+                const pet = await database.findOneListing("pets", { _id: _id });
+                petList.push(pet);
+            }
+            
         }
         console.log("mypet.out",petList);
         res.json(petList);

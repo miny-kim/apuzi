@@ -9,20 +9,24 @@ router.get('/',async function (req,res){
     try{
         const user = await database.findOneListing("users",{id:req.user.id});
         let calendarList=[];
-        for(cal_id of user.calendar_list){
-            let cal=await database.findOneListing("calendars",{_id:cal_id});
-            cal.start=moment(cal.start).tz("Asia/Seoul").format();
-            cal.end=moment(cal.end).tz("Asia/Seoul").format();
-            calendarList.push(cal);
-        }
-        for(pet_id of user.pet_list){
-            let pet=await database.findOneListing("pets",{_id:pet_id});
-            let cal=await database.findOneListing("calendars",{_id:pet._id});
-            if(cal){
+        if(user.calendar_list){
+            for(cal_id of user.calendar_list){
+                let cal=await database.findOneListing("calendars",{_id:cal_id});
                 cal.start=moment(cal.start).tz("Asia/Seoul").format();
                 cal.end=moment(cal.end).tz("Asia/Seoul").format();
                 calendarList.push(cal);
-
+            }
+        }
+        if(user.pet_list){
+            for(pet_id of user.pet_list){
+                let pet=await database.findOneListing("pets",{_id:pet_id});
+                let cal=await database.findOneListing("calendars",{_id:pet._id});
+                if(cal){
+                    cal.start=moment(cal.start).tz("Asia/Seoul").format();
+                    cal.end=moment(cal.end).tz("Asia/Seoul").format();
+                    calendarList.push(cal);
+    
+                }
             }
         }
         console.log(calendarList);
