@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var database = require("../lib/database");
+var moment=require("moment");
+var momentTimezone=require("moment-timezone");
 
 router.get('/', async function (req, res) {
     try {
@@ -51,7 +53,7 @@ router.post('/:idx/register', async function (req, res) {
         data.writer=req.user.nickname;
         data.view=0;
         data.like=0;
-        data.time=new Date();
+        data.time=moment(Date.now()).tz("Asia/Seoul").format("llll");
         const insertedId=await database.createListing("board"+idx,data);
         console.log("???",insertedId);
         await database.pushElementInListing(

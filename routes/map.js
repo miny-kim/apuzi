@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var database = require("../lib/database");
+var ObjectId=require("mongodb").ObjectId;
 
 router.get("/", async function (req, res) {
     try{
@@ -15,6 +16,7 @@ router.get("/", async function (req, res) {
 
 router.get("/:idx", async function (req, res) {
     //??    
+    new ObjectId
 });
 
 router.post("/book", async function (req, res) {
