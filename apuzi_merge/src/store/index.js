@@ -8,7 +8,8 @@ export default new Vuex.Store({
     state: {
         events: [],
         token:'',
-        role:''
+        role:'',
+        index:'',
     },
     mutations: {
         setEvents(state, payload) {
@@ -19,6 +20,9 @@ export default new Vuex.Store({
         },
         falseRole(state){
             state.role =false;
+        }
+        ,setIndex(state,payload){
+            state.index = payload;
         }
     },
     actions: {}

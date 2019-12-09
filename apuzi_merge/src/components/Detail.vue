@@ -3,7 +3,7 @@
         <h4>image</h4>
         <div id="image">
         </div>
-        <h4>{{title}}</h4>
+        <h4>Title</h4>
         <div id="title">
             <p></p>
             {{title}}
@@ -32,11 +32,10 @@ export default {
     }
   },
      created () {
+      var t_idx =  this.$store.state.index;
+      console.log("ttttttt"+t_idx);
        var idx = this.myindex;
-       eventBus.$on('D',function(payload){
-         var t_idx = payload;
-         console.log("ttttt"+t_idx);
-         this.$http.get(`/board/${idx}/text/${t_idx}`)
+       this.$http.get(`/board/${idx}/text/${t_idx}`)
           .then((response) => {
             console.log(response.data.title);
             this.title = response.data.title;
@@ -44,8 +43,19 @@ export default {
             this.image = response.data.image;
             this.view = response.data.view;
        }); 
+    //    eventBus.$on('D',function(payload){
+    //      var t_idx = payload;
+    //      console.log("ttttt"+t_idx);
+    //      this.$http.get(`/board/${idx}/text/${t_idx}`)
+    //       .then((response) => {
+    //         console.log(response.data.title);
+    //         this.title = response.data.title;
+    //         this.contents = response.data.contents;
+    //         this.image = response.data.image;
+    //         this.view = response.data.view;
+    //    }); 
       
-    });
+    // });
    
 
   },

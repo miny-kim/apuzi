@@ -71,6 +71,7 @@ export default {
    let idx = 1;
    let p_id = 1;
    this.pageNum =0;
+   this.$store.commit('trueRole');
     this.$http.get(`/board/${idx}/${p_id}`)
     .then((response) => {
       this.texts = response.data.text;
@@ -121,11 +122,12 @@ export default {
 },
 methods: {
     view(t_idx){
-        console.log("글 보여줘");
+        console.log("글 보여줘");   
         this.$emit('show',1);
         let idx = this.myindex;
         console.log("!!!!!!!!!!!!!"+t_idx);
         eventBus.$emit('D',t_idx);
+        this.$store.commit('setIndex', t_idx);
         //this.$router.replace()
     },
     nextPage () {
