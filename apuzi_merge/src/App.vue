@@ -36,6 +36,7 @@ export default {
   created(){
      this.$http.get('/info')
     .then((response) => {
+      console.log("cre"+response.data.id)
       if(response.data.id!=null){
       this.$store.commit('trueRole');
 

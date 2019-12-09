@@ -16,9 +16,11 @@ export default new Vuex.Store({
             state.events = payload;
         },
         trueRole(state){
+            console.log("trrrrrrrrrrrrrrrrrrrr");
             state.role =true;
         },
         falseRole(state){
+            console.log("fffff");
             state.role =false;
         }
         ,setData(state,payload){
