@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var database = require("../lib/database");
 
-router.post("/mypage",async function(req,res){
+router.post("/",async function(req,res){
     try{
         const user = await database.findOneListing("users",{id:req.user.id})
         if(user.pw==req.body.pw){
@@ -16,7 +16,7 @@ router.post("/mypage",async function(req,res){
     }
 });
 
-router.get("/mypage",async function(req,res){
+router.get("/",async function(req,res){
     try{
         const user=await database.findOneListing("users",{id:req.user.id});
         res.json(user);
@@ -26,7 +26,7 @@ router.get("/mypage",async function(req,res){
     }
 });
 
-router.post("/mypage/modify",async function(req,res){
+router.post("/modify",async function(req,res){
     try{
         await database.upsertListing("users",{id:req.user.id},req.body);
         res.json({success:true});
