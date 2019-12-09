@@ -72,11 +72,11 @@ export default {
     .then((response) => {
       this.texts = response.data.text;
      this.text_length =response.data.text_length;
-      console.log(this.texts[0]);
       console.log("게시판 글 수는!!"+this.text_length);
         let page = Math.floor(this.text_length / 10);
         if (this.text_length  % 10 > 0) page += 1;
         this.pageCount = page;
+      console.log("page____num"+this.pageNum);
     })
   },
   computed:{
@@ -103,25 +103,13 @@ export default {
     myindex: function(){
         console.log("sssssss"+this.myindex);
         let idx = this.myindex;
-        let p_id= 1;
-        this.$http.get(`/board/${idx}/${p_id}`)
+        this.$http.get(`/board/${idx}/1`)
         .then((response) => {
             this.texts = response.data.text;
             this.text_length =response.data.text_length;
       console.log("게시판 글 수는!!"+this.text_length);
             })
       
-  },
-  pageNum: function(){
-      console.log(this.pageNum+"DDD"+this.myindex);
-       let idx = this.myindex;
-       let p_id= this.pageNum;
-       this.$http.get(`/board/${idx}/${p_id}`)
-    .then((response) => {
-      this.texts = response.data.text;
-     this.text_length =response.data.text_length;
-      console.log("게시판 글 수는!!"+this.text_length);
-    })
   }
 },
 methods: {
@@ -131,9 +119,26 @@ methods: {
     },
     nextPage () {
       this.pageNum += 1;
+      let idx = this.myindex;
+       let p_id= this.pageNum+1;
+       this.$http.get(`/board/${idx}/${p_id}`)
+    .then((response) => {
+      this.texts = response.data.text;
+     this.text_length =response.data.text_length;
+      console.log("next page"+p_id);
+    })
+
     },
     prevPage () {
       this.pageNum -= 1;
+      let idx = this.myindex;
+       let p_id= this.pageNum+1;
+       this.$http.get(`/board/${idx}/${p_id}`)
+    .then((response) => {
+      this.texts = response.data.text;
+     this.text_length =response.data.text_length;
+      console.log("prev page"+p_id);
+    })
     }
 },
 }
@@ -141,7 +146,7 @@ methods: {
 <style scoped>
 div {
     text-align: center;
-    font-size: medium;
+    font-size: small;
 }
 button{
     padding: 5px 5px 5px 5px;
@@ -154,7 +159,8 @@ button{
     text-align: center;
     border-collapse: collapse;
     border-bottom: 1px solid #ddd;
-    padding: 20px;
+    color: black;
+    padding: 13px;
 }
 
 #text tr td:hover {
@@ -193,7 +199,6 @@ input[type=text] {
     padding: 12px 10px;
     margin: 8px 0px 0px 8px;
     display: inline-block;
-    box-sizing: border-box;
 }
 
 @media (max-width: 768px) {

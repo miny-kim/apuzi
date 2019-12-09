@@ -1,20 +1,16 @@
 <template>
   <div id="board_page">
     <div class="board">
-        <h1>Board list</h1>
-            <p>
         <div v-for="item in boards" v-bind:key="item.idx">
             <p></p>
             <button @click= "get_texts(item.idx)" style="font-size : 16px">{{item.name}}</button>
                 <hr />
-                <!--router-link :to="{name:'board_idx', params:{idx: item.idx}}"></router-link-->
         </div>
     </div>
       
       <T id="T" v-bind:myindex="myindex"></T>
   </div>
 </template>
-
 
 <script>
 // @ is an alias to /src
@@ -31,14 +27,7 @@ export default {
     return {
       myindex: '1',
       board_length: '0',
-      boards: [{
-          name:"Food",
-          idx:1
-      },
-      {
-          name:"ddd",
-          idx:2
-      }],
+      boards: [],
       selected:"",
     }
   },
