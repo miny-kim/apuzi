@@ -27,7 +27,7 @@ var authRouter = require("./routes/auth")(passport);
 var myPetRouter = require("./routes/myPet");
 var calenarRouter = require("./routes/calendar");
 var mapRouter=require("./routes/map");
-
+var mypageRouter=require("./routes/mypage");
 
 
 app.use(logger('dev'));
@@ -42,7 +42,7 @@ app.use('/board', boardRouter);
 app.use('/mypet', myPetRouter);
 app.use("/calendar",calenarRouter);
 app.use("/map",mapRouter);
-
+app.use("/mypage",mypageRouter);
 
 
 module.exports = app;

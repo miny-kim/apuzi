@@ -2,6 +2,8 @@ var express = require('express');
 var ObjectId=require("mongodb").ObjectId;
 var router = express.Router();
 var database = require("../lib/database");
+var moment = require("moment");
+var momentTimezone=require("moment-timezone");
 
 router.get('/',async function (req,res){
     try{
@@ -9,12 +11,16 @@ router.get('/',async function (req,res){
         let calendarList=[];
         for(cal_id of user.calendar_list){
             let cal=await database.findOneListing("calendars",{_id:cal_id});
+            cal.start=moment(cal.start).tz("Asia/Seoul").format();
+            cal.end=moment(cal.end).tz("Asia/Seoul").format();
             calendarList.push(cal);
         }
         for(pet_id of user.pet_list){
             let pet=await database.findOneListing("pets",{_id:pet_id});
             let cal=await database.findOneListing("calendars",{_id:pet._id});
             if(cal){
+                cal.start=moment(cal.start).tz("Asia/Seoul").format();
+                cal.end=moment(cal.end).tz("Asia/Seoul").format();
                 calendarList.push(cal);
 
             }

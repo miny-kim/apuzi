@@ -16,7 +16,7 @@ router.get("/", async function (req, res) {
 
 router.get("/:idx", async function (req, res) {
     //??    
-    new ObjectId
+    
 });
 
 router.post("/book", async function (req, res) {
