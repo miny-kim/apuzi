@@ -30,6 +30,7 @@ router.get("/:idx/remove/:t_idx",async function (req,res){
                 texts:text._id
             });
         }
+        res.json({success:true});
     }catch(e){
         console.error(e);
         res.json({success:false});
