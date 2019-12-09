@@ -12,10 +12,10 @@
         <span v-show = "this.$store.state.role==1">
         <button v-on:click= "logout"><b>Logout</b></button> |
         <button v-on:click= "mypage"><b>My Info</b></button> |
-        </span>
       <router-link to="/board">Board</router-link> |
       <router-link to="/mypet">My Pet</router-link> |
       <router-link to="/map">Booking</router-link>
+        </span>
       <p></p>
         </h3>
       </div>

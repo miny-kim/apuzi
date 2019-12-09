@@ -22,6 +22,7 @@ export default new Vuex.Store({
             state.role = false;
         },
         setData(state, payload) {
+
             state.data = payload;
         }
     },

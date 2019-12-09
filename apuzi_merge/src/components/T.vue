@@ -124,9 +124,13 @@ methods: {
         let idx = this.myindex;
         console.log("글 보여줘");   
         this.$emit('show',1);
+        console.log
+        this.$emit('del',t_idx);
          this.$http.get(`/board/${idx}/text/${t_idx}`)
           .then((response) => {
+              console.log("rererere"+ response.data.removable);
               this.$store.commit('setData', response.data);
+              console.log("rererere"+ this.$store.state.data.removable);
        });
     },
     nextPage () {
