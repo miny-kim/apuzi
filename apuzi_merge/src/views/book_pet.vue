@@ -293,6 +293,9 @@
         })
 
         this.dialog=false
+        this.$router.push({
+          name:'mypet'
+        })
       },
       
   },

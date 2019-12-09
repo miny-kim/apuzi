@@ -69,6 +69,7 @@ export default {
                 if(response.data.success == true){
                     console.log("success"); 
                     this.auth=false;
+                    this.$router.push({name: 'login'});
                     }  
             }).catch((ex) => {
                 console.warn("ERROR!!!!! : ",ex)

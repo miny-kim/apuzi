@@ -11,7 +11,8 @@
    
       <T @show = "Detail" v-show = "!show" id="T" v-bind:myindex="myindex"></T>
       <D id="D" v-bind:myindex="myindex" v-show="show"></D>
-      <button id="del" v-show="show&&role" type="submit" v-on:click="del"><b>삭제</b></button>
+
+      <button id="del" v-show="show&&this.$store.state.removable" type="submit" v-on:click=" "><b>삭제</b></button>
        <button id="back" v-show="show" type="submit" v-on:click="back"><b>뒤로 가기</b></button>
     
   </div>
@@ -64,9 +65,14 @@ export default {
     back: function(){
       console.log("T...");
       this.show = 0;
-    },
+    },    
     del: function(){
-      consloe.log("del");
+      console.log("del");
+      var idx = this.myindex;
+      var t_id = this.$store.state.data._id;
+        this.$http.get(`/board/${idx}/remove/${t_id}`)
+        .then((response) => {
+          console.log("rrrrrrrrsuccess");            })
 
     }
   },
