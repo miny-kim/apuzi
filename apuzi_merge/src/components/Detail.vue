@@ -3,7 +3,7 @@
         <h4>image</h4>
         <div id="image">
         </div>
-        <h4>Title</h4>
+        <h4>{{title}}</h4>
         <div id="title">
             <p></p>
             {{title}}
@@ -18,24 +18,35 @@
     </div>
 </template>
 <script>
+import eventBus from '../../eventBus.js'
 export default {
+  name: 'D',
+  props: ['myindex'],
   data(){
     return {
       image : null,
-      title:'aa',
-      contents:'peqwor4851u03249jfalw',
-      view:'4',
+      myindex:1,
+      title:'a',
+      contents:'',
+      view:'',
     }
   },
      created () {
-    this.$http.get(`/board/${idx}/text/${t_idx}`)
-    .then((response) => {
-      this.title = response.data.title;
-      this.contents = response.data.contents;
-      this.image = response.data.image;
-      this.view = response.data.view;
+       var idx = this.myindex;
+       eventBus.$on('D',function(payload){
+         var t_idx = payload;
+         console.log("ttttt"+t_idx);
+         this.$http.get(`/board/${idx}/text/${t_idx}`)
+          .then((response) => {
+            console.log(response.data.title);
+            this.title = response.data.title;
+            this.contents = response.data.contents;
+            this.image = response.data.image;
+            this.view = response.data.view;
+       }); 
       
     });
+   
 
   },
     

@@ -51,6 +51,7 @@
 
 
 <script>
+import eventBus from '../../eventBus.js'
 export default {
   name: 'T',
   props: ['myindex'],
@@ -108,6 +109,9 @@ export default {
         .then((response) => {
             this.texts = response.data.text;
             this.text_length =response.data.text_length;
+            let page = Math.floor(this.text_length / 10);
+            if (this.text_length  % 10 > 0) page += 1;
+            this.pageCount = page;
       console.log("게시판 글 수는!!"+this.text_length);
             })
       
@@ -119,18 +123,13 @@ methods: {
         this.$emit('show',1);
         let idx = this.myindex;
         console.log("!!!!!!!!!!!!!"+t_idx);
-       // let t_idx = this.txts.idx;
-        this.$http.get(`/board/${idx}/text/${t_idx}`)
-        .then((response) => {
-            this.texts = response.data.text;
-            })
-        //글보여주기 기능 구현
+        eventBus.$emit('D',t_idx);
+        //this.$router.replace()
     },
     nextPage () {
       this.pageNum += 1;
       let idx = this.myindex;
        let p_id= this.pageNum+1;
-       console.log("글 목록 불러와");
        this.$http.get(`/board/${idx}/${p_id}`)
     .then((response) => {
       this.texts = response.data.text;
@@ -143,11 +142,11 @@ methods: {
       this.pageNum -= 1;
       let idx = this.myindex;
        let p_id= this.pageNum+1;
-       console.log("글 목록 불러와");
        this.$http.get(`/board/${idx}/${p_id}`)
     .then((response) => {
       this.texts = response.data.text;
      this.text_length =response.data.text_length;
+     
       console.log("prev page"+p_id);
     })
     }

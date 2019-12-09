@@ -10,7 +10,7 @@
     </div>
    
       <T @show = "Detail" v-show = "!show" id="T" v-bind:myindex="myindex"></T>
-      <D v-bind:myindex="myindex" id="D" v-show="show"></D>
+      <D id="D" v-bind:myindex="myindex" v-show="show"></D>
       <button id="del" v-show="show&&role" type="submit" v-on:click="del"><b>삭제</b></button>
        <button id="back" v-show="show" type="submit" v-on:click="back"><b>뒤로 가기</b></button>
     
