@@ -1,9 +1,11 @@
 <template>
     <div id='dmap'>
     
-        <input v-model="myPlace" placeholder="내위치">
+        <input v-model="myPlace" placeholder="원하는 병원을 입력하세요">
         <button v-on:click="find">찾기</button>
-        <button v-on:click="hos"> 병원찾기</button>
+        <br>
+        <br>
+        <button v-on:click="hos"> 주변 병원찾기</button>
         <p></p>
         <div id="map" style='width:100%; height:500px'></div>
        <br>
@@ -19,6 +21,7 @@ var markers = [];
 var positions=new Array();
 var data=new Array()
 var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+
 
 export default {
     name:'dmap',
@@ -61,6 +64,7 @@ export default {
                 };
         
                 map = new kakao.maps.Map(container, options);
+                scope.map=map;
             }       
             });
 

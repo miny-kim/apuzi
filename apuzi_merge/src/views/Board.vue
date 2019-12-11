@@ -12,7 +12,7 @@
       <T @show = "Detail" @del = "set" v-show = "!show" id="T" v-bind:myindex="myindex"></T>
       <D id="D" v-bind:myindex="myindex" v-show="show"></D>
 
-      <button id="del" v-show="this.$store.state.data.removable" type="submit" v-on:click="del"><b>삭제</b></button>
+      <button id="del" v-show="show&&this.$store.state.data.removable" type="submit" v-on:click="del"><b>삭제</b></button>
        <button id="back" v-show="show" type="submit" v-on:click="back"><b>뒤로 가기</b></button>
     
   </div>
@@ -76,6 +76,7 @@ export default {
         .then((response) => {
           console.log("rrrrrrrrsuccess");            })
 
+
     },
     set: function(t_id){
       this.t_idx = t_id;
@@ -101,7 +102,7 @@ export default {
   left: 0;
   margin: 0px 0px 60px 0px;
   width:100%;
-  height: 100%;
+  height: 155%;
   opacity: 0.5;
   z-index: -1;
   background-image: url("../../public/images/main_5.jpg")

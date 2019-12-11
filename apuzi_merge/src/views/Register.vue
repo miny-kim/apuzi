@@ -7,9 +7,6 @@
         <label for="contents"><h3>Contents</h3></label>
         <textarea v-model="contents" id ="contents" required=""></textarea>
 
-
-        <input type="file" accept="image/*" @change="onChange" id="file-input">
-
         <br>
         <br>
         <br>

@@ -74,7 +74,7 @@ form {
   left: 0;
   margin: 0px 0px 60px 0px;
   width:100%;
-  height: 100%;
+  height: 155%;
   opacity: 0.5;
   z-index: -1;
   background-image: url("../../public/images/main_5.jpg")

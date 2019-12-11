@@ -154,4 +154,10 @@ export default{
     width: 80px;
     height: 30x;
   }
+  input{
+      margin: 5px 0px 10px 5px;
+      width: 200px;
+       border-radius: 8px;
+       border: 1px solid burlywood;
+  }
 </style>

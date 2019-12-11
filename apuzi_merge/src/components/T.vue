@@ -26,9 +26,9 @@
                  </tr>
             </thead>
                 <tbody id="contents">
-                    <tr v-for="item in filtered" v-bind:key="item.idx">
+                    <tr id="only" v-on:click = "view(item.idx)" v-for="item in filtered" v-bind:key="item.idx">
                         <td>{{item.idx}}</td>
-                        <td id="only" v-on:click = "view(item.idx)">{{item.title}}</td>
+                        <td>{{item.title}}</td>
                         <td>{{item.writer}}</td>
                         <td class="col_1">{{item.time}}</td>
                         <td class="col_1">{{item.view}}</td>
@@ -181,7 +181,7 @@ button{
     padding: 13px;
 }
 
-#text tr td#only:hover {
+#text tr#only:hover {
     background-color: #f5f5f5;
 }
 
