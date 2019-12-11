@@ -38,6 +38,7 @@ export default {
         let add,lat,lng;
         // 주소-좌표 변환 객체를 생성합니다
         let geocoder;
+        const scope = this;
 
         this.$http.get('/map/user').then((result)=>{
 
@@ -93,7 +94,7 @@ export default {
 
                     // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
                     map.setBounds(bounds)
-                
+
                 } 
             }
         },
