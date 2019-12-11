@@ -12,9 +12,10 @@ router.get('/',async function (req,res){
         if(user.calendar_list){
             for(cal_id of user.calendar_list){
                 let cal=await database.findOneListing("calendars",{_id:cal_id});
-                cal.start=moment(cal.start).tz("Asia/Seoul").format();
-                cal.end=moment(cal.end).tz("Asia/Seoul").format();
-                calendarList.push(cal);
+                if(cal){
+                    calendarList.push(cal);
+
+                }
             }
         }
         if(user.pet_list){
@@ -24,8 +25,6 @@ router.get('/',async function (req,res){
                 for(cal_id of pet.calendar_list){
                     let cal=await database.findOneListing("calendars",{_id:cal_id});
                     if(cal){
-                        cal.start=moment(cal.start).tz("Asia/Seoul").format();
-                        cal.end=moment(cal.end).tz("Asia/Seoul").format();
                         calendarList.push(cal);
                     }
                 }
