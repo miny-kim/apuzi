@@ -76,13 +76,36 @@ export default {
     async onSubmit() {
       var f_start;
       const isValid = await this.$refs.observer.validate();
+      let st_ampm
+      let end_ampm
       if (!isValid) {
         return;
       }
+      let start=this.form.start;
+      let end=this.form.end;
+
+      if(start.includes("후")||start.includes("pm"))
+        st_ampm=start.substring(11,13)*1+12*1;
+      else
+        st_ampm=start.substring(11,13)
+
+      if(end.includes("후")||end.includes("pm"))
+        end_ampm=start.substring(11,13)*1+12*1;
+      else
+        end_ampm=start.substring(11,13)
+      
+      
       moment.tz.setDefault("Asia/Seoul");
       console.log(moment().format('YYYY-MM-DD HH:mm:ss'));
-      this.form.start  = moment(this.form.start).format('YYYY-MM-DD HH:mm:ss');
-      this.form.end  = moment(this.form.end).format('YYYY-MM-DD HH:mm:ss');
+      console.log("2019-12-20T14:00:00Z");
+      //this.form.start  = moment(this.form.start).format('YYYY-MM-DD HH:mm:ss');
+      //this.form.end  = moment(this.form.end).format('YYYY-MM-DD HH:mm:ss');
+
+      this.form.start=start.substring(0,10)+"T"+st_ampm+start.substring(13,16)+":00Z"
+      this.form.end=end.substring(0,10)+"T"+end_ampm+end.substring(13,16)+":00Z"
+
+      console.log(this.form.start)
+      console.log(this.form.end)
 
       if (this.edit) {
         await this.editCalendar(this.form);

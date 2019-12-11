@@ -104,6 +104,8 @@ export default {
             data=result.data
             console.log(result.data)
             console.log(data)
+            positions = [];
+            markers=[];
             for(let i=0;i<data.length;i++){
                 let hospital=new Object();
                 hospital._id=data[i]._id;
@@ -127,14 +129,15 @@ export default {
            var marker = new kakao.maps.Marker({
                map: map, // 마커를 표시할 지도
                position: positions[i].latlng, // 마커를 표시할 위치
-               title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+               title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니
                image: markerImage // 마커 이미지 
            });
 
-           markers.push(marker)
+           markers.push(marker);
         }
-
+        
         for (let i = 0; i < markers.length; i++) {
+            console.log("length:xxxxx:"+markers.length);
            kakao.maps.event.addListener(markers[i], 'click', function () {
                 scope.$router.push({
                     name:"map_book",
@@ -142,6 +145,7 @@ export default {
                         hos:positions[i]
                     }
                 })
+                console.log("position here" + positions[i]);
            });
         }
         })

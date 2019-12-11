@@ -274,8 +274,8 @@
         console.log(this.reserve.pet)
         console.log(pet_inform[i]._id)
         
-        let title=this.$route.params.hos.title+"에서 "+this.reserve.title
-        console.log(title)
+        var _title=this.$route.params.hos.title+"에서 "+this.reserve.title
+        console.log(_title)
         let start=this.reserve.date+"T"+this.reserve.time+":00.000Z"
         let end=this.reserve.date+"T"+this.reserve.time.substr(0,2)+":59:00.000Z"
         console.log(start)
@@ -285,7 +285,7 @@
             calendar:{
                 start:start,
                 end:end,
-                title:title,
+                title:_title,
             },
             hospital_id:this.$route.params.hos._id,
             pet_id:pet_inform[i]._id,
